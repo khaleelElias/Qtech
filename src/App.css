@@ -13,6 +13,16 @@
   }
 }
 
+
+.elias{
+  padding: 10px;
+  background-color: #ccc;
+}
+img{
+  padding: 10px;
+  
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
