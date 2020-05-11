@@ -5,7 +5,7 @@ import { Stack } from 'office-ui-fabric-react/lib/Stack';
 import { mergeStyles } from 'office-ui-fabric-react/lib/Styling';
 import { Callout} from 'office-ui-fabric-react';
 
-const dummyData = [ {name:"Khaleel Elias", online:"online"} , {name:"Robin Sauma", online:"busy"}]
+const dummyData = [ {name:"Khaleel Elias", online:"online"} , {name:"Robin Sauma", online:"busy"}, {name:"Robin Sauma", online:"busy"}, {name:"Robin Sauma", online:"busy"}, {name:"Robin Sauma", online:"busy"},{name:"Khaleel Elias", online:"online"} , {name:"Robin Sauma", online:"busy"}, {name:"Robin Sauma", online:"busy"}, {name:"D E", online:"do not disturb"}, {name:"A B", online:"away"}]
 
 export class CardBox extends React.Component{
 
@@ -22,19 +22,20 @@ export class CardBox extends React.Component{
             <div>
                 <Stack horizontal>
                     <Stack>
-                        <Label>Online</Label>
                         <Stack horizontal>
                             {
                                 dummyData.map( (value) => {
                                     return (
-                                        <Persona
+                                        <div class = "elias">
+                                        <Persona class = "khaleel"
                                             text={value.name}
-                                            size={PersonaSize.size72}
+                                            size={PersonaSize.size32}
                                             hidePersonaDetails
                                             presence={PersonaPresence[value.online]}
                                             imageAlt="Annie Lindqvist, status is online."
                                             onClick={ () => { this.setState({isShown: !this.state.isShown}) }}
                                         />
+                                        </div>
                                     )
                                 })
                             }
@@ -55,10 +56,4 @@ export class CardBox extends React.Component{
 
 }
 
-const rootClass = mergeStyles({
-  selectors: {
-    '.ms-Persona': {
-      margin: '0 20px 20px 0',
-    },
-  },
-});
+;
