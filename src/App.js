@@ -1,20 +1,57 @@
-import React from 'react';
 import './App.css';
-import qtechgroup from '../src/1.png'
 
-import { CardBox } from './components/CardBox'
-import { CardBox2 } from './components/CardBox2' 
+import { Link, Router } from 'react-router-dom'
 
-function App() {
-  return (
-    <div>
+import {Home} from './components/Home'
+
+import React, { Component } from 'react'
+
+
+class App extends Component {
+  constructor(props) {
+    super(props)
+    
+    this.state = {
+      users:[]
+         
+    }
+  }
+
+  componentDidMount(){
+    fetch('http://localhost:3000/users')
+    .then(Response => Response.json())
+    .then(res => {
+      if(res && res.data){
+          this.setState({ users: [...this.state.users, ...res.data] })
+      }
+    });
+      
+  }
+
+  renderUsers() {
+    if(this.state.users.length <= 0){
+      return <div>loading....</div>
+    }
+    else{
+      return this.state.users.map((val, key) => {
+        return <div key={key}>{val.name} | {val.age} </div>
+      });
+    }
+
+  }
+
+  render() {
+    return (
+      <div>
+        
       <header>
-      <img class = "img" src={qtechgroup} />
-        <CardBox />
+       <Home/>
        
       </header>
+      {this.renderUsers()}
     </div>
-  );
+    )
+  }
 }
 
-export default App;
+export default App

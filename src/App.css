@@ -14,13 +14,21 @@
 }
 
 
-.elias{
+.persona{
   padding: 10px;
-  background-color: #ccc;
+}
+.header{
+  border-bottom: solid;
+  background-color: #ffe4bb;
 }
 img{
   padding: 10px;
   
+}
+.ms-Persona-presence.presence-63{
+
+  background-color: aqua;
+
 }
 
 .App-header {
@@ -46,3 +54,4 @@ img{
     transform: rotate(360deg);
   }
 }
+
