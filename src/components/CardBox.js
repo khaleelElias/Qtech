@@ -55,5 +55,3 @@ export class CardBox extends React.Component{
     }
 
 }
-
-;
