@@ -6,10 +6,18 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-stormpath": "^4.0.0",
+    "mysql": "^2.18.1",
+    "nosql": "^6.1.0",
     "office-ui-fabric-react": "^7.111.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "react-icons": "^3.10.0",
+    "react-native-elements": "^2.0.0",
+    "react-scripts": "3.4.1",
+    "webpack": "^4.43.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -31,5 +39,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "webpack-dev-middleware": "^3.7.2"
   }
 }
