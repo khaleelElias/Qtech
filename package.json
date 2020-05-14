@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fluentui/react": "^7.111.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -11,13 +12,16 @@
     "express-stormpath": "^4.0.0",
     "mysql": "^2.18.1",
     "nosql": "^6.1.0",
+    "react-icons": "^3.10.0",
+    "react-native-elements": "^2.0.0",
+    "webpack": "^4.43.0",
+    "node-sass": "^4.14.1",
     "office-ui-fabric-react": "^7.111.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-icons": "^3.10.0",
-    "react-native-elements": "^2.0.0",
-    "react-scripts": "3.4.1",
-    "webpack": "^4.43.0"
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.1"
   },
   "scripts": {
     "start": "react-scripts start",
