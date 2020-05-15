@@ -1,4 +1,5 @@
 import * as React from 'react';
+import './style.css'
 import { IPersonaSharedProps, Persona, PersonaSize, PersonaPresence } from 'office-ui-fabric-react/lib/Persona';
 import { Label } from 'office-ui-fabric-react/lib/Label';
 import { Stack } from 'office-ui-fabric-react/lib/Stack';
@@ -22,9 +23,11 @@ export class CardBox extends React.Component{
                     <Stack>
                         <Stack horizontal>
                             {
-                                dummyData.slice(0, 5).map( (value) => {
+                                dummyData.slice(0, 10).map( (value) => {
                                     return (
-                                        <div class = "persona">
+                                        <div class = "header">
+                                            
+                                            <div class = "persona">
                                         <Persona
                                             text={value.name}
                                             size={PersonaSize.size32}
@@ -32,6 +35,7 @@ export class CardBox extends React.Component{
                                             presence={PersonaPresence[value.online]}
                                             imageAlt="Annie Lindqvist, status is online."
                                         />
+                                         </div>
                                         </div>
                                     )
                                 })
