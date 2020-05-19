@@ -1,9 +1,8 @@
 import './App.css';
-
+import Navbar from './Navbar'
 import { Link, Router } from 'react-router-dom'
-
 import {Home} from './components/Home'
-
+import {MdAccountCircle} from './'
 import React, { Component } from 'react'
 
 
