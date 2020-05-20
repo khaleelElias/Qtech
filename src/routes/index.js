@@ -8,7 +8,7 @@ export default function Routes(){
         <Router>
             <Switch>
                 <Route path="/" exact component={Home} />
-                <Route path="/createPost" component={Create_Post} />
+                <Route path="/Create_Post" component={Create_Post} />
             </Switch>
         </Router>
     )

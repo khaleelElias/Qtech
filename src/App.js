@@ -1,10 +1,9 @@
 import './App.css';
-import Navbar from './Navbar'
+import Navbar from './components/Navbar'
 import { Link, Router } from 'react-router-dom'
 import { createBrowserHistory } from 'history'
 
-import {Home} from './components/Home'
-import {MdAccountCircle} from './'
+import { Home } from './components/Home'
 import React, { Component } from 'react'
 
 import Routes from './routes'
@@ -15,19 +14,24 @@ class App extends Component {
     
     this.state = {
       users:[]
+
          
     }
   }
 
   componentDidMount(){
-    fetch('http://localhost:3000/users')
-    .then(Response => Response.json())
-    .then(res => {
+    fetch('/users')
+    .then(response => {
+      console.log(response)
+      return response.json()
+    }).then(res => {
+      console.log(res)
       if(res && res.data){
           this.setState({ users: [...this.state.users, ...res.data] })
       }
+    }).catch(error => {
+      console.log(error)
     });
-      
   }
 
   renderUsers() {
