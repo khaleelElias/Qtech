@@ -19,3 +19,22 @@
     display: table;
     clear: both;
   }
+
+  .Dropdown{
+
+    padding : 23px;
+    border-radius:20px ;
+  }
+
+  
+  .Modal_New_User{
+    padding: 15px;
+    
+    
+  }
+  .TextField{
+
+    padding: 15px;
+  }
+  
+ 
