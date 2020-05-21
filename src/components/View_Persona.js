@@ -16,7 +16,7 @@ export class View_Persona extends Component {
     }
 
     changeStatus = (status, id) => {
-        fetch('/users/updateStatus', {
+        fetch('/users/status', {
             method:"PUT",
             headers:{
                 "Content-Type":"application/json"
@@ -36,7 +36,7 @@ export class View_Persona extends Component {
     }
 
     switchStatus = {
-        "bad":PersonaPresence.busy,
+        "bad": PersonaPresence.busy,
         "good": PersonaPresence.online,
         "well": PersonaPresence.away
     }
@@ -61,9 +61,7 @@ export class View_Persona extends Component {
                 {
                     this.state.isShown && (
                     <Callout
-                    onDismiss={ () => this.setState({isShown: false})}
-
-                    >
+                    onDismiss={ () => this.setState({isShown: false})} >
                         <Dropdown className ="Dropdown"
                             label="Hur mår du idag?"
                             placeholder="Välj ett alternativ"

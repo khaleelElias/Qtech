@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import qtechgroup from '../1.png'
+import qtechgroup from '../public/1.png'
 
 export class Qtech_Logo extends Component {
     render() {
@@ -12,5 +12,3 @@ export class Qtech_Logo extends Component {
         )
     }
 }
-
-

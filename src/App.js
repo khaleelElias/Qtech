@@ -1,10 +1,6 @@
-import './App.css';
-
-import { Link, Router } from 'react-router-dom'
+import './public/App.css';
+import { Router } from 'react-router-dom'
 import { createBrowserHistory } from 'history'
-
-import {Home} from './components/Home'
-
 import React, { Component } from 'react'
 
 import Routes from './routes'
