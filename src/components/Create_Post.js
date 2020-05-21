@@ -12,7 +12,7 @@ export class Create_Post extends Component {
     render() {
         return (
             <div>
-                
+                <h1>khaleel</h1>
             </div>
         )
     }

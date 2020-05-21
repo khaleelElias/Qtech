@@ -7,12 +7,16 @@ import './style.css'
 import { initializeIcons  } from 'office-ui-fabric-react';
 import { Modal } from 'office-ui-fabric-react';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
+import {withRouter} from 'react-router-dom';
+
 import {statusOptions} from '../constants/index'
+
 
 import { useHistory } from "react-router-dom";
 
 
 export class Sub_Menu extends Component {    
+
   constructor(props) {
       super(props)
       initializeIcons()
@@ -33,25 +37,25 @@ export class Sub_Menu extends Component {
         body: JSON.stringify({
             username,
             status
-            
         })
     })
     .then(Response => Response.json())
-    .then( () => {
+    .then( () => {  
+        this.props.reloadData()
         this.setState({showModul:false});
-        this.props()
+
       }).catch(error => {
         console.log("error creating user", error)
     })
-}
+  }
   
-   
   subMenuProps = {
     items: [
       {
         key: 'Projekt',
         text: 'Projekt',
-        iconProps: { iconName: 'ProjectLogoFill16' }
+        iconProps: { iconName: 'ProjectLogoFill16'}
+
       },
       {
         key: 'Aktivitet',
@@ -62,31 +66,27 @@ export class Sub_Menu extends Component {
         key: 'Användare',
         text: 'Användare',
         iconProps: { iconName: 'AddFriend' },
-        onClick: () => { this.setState({showModul: true})}
+        onClick: () => this.setState({showModul: true})
       }
     ],
   }
 
   render() {
-    if(this.state.showModul)
-      console.log("render")
-    else
-      console.log("false")
+     
       return (
           <div>
             
-           
             <CommandBarButton 
               style={{margin:10, padding:10}}
               items={this._items}
-              text={"New"}
+              text={"Lägg till"}
               iconProps={{iconName: "Add"}}
               menuProps={this.subMenuProps}  
             />
             
             <Modal className = "Modal"
                 isOpen={this.state.showModul}
-                onDismiss={() => {this.setState({showModul: !this.state.showModul})}}
+                onDismiss={() => this.setState({showModul: !this.state.showModul}) }
                 isBlocking={false}
             >
             <form className = "Modal_New_User">
@@ -95,7 +95,7 @@ export class Sub_Menu extends Component {
               <Dropdown 
                 className ="Dropdown"
                 label="Hur mår du idag?"
-                placeholder="Select an option"
+                placeholder="Välj ett alternativ"
                 onChange={ ({}, item) => this.setState({status:item.key}) }
 
                 options={statusOptions}
@@ -105,8 +105,6 @@ export class Sub_Menu extends Component {
             </form>
 
            </Modal>
-            
-            
           </div>
       )
   }

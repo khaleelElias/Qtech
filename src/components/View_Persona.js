@@ -52,7 +52,7 @@ export class View_Persona extends Component {
                             size={PersonaSize.size32}
                             hidePersonaDetails
                             presence={this.switchStatus[this.props.status]}
-                            imageAlt="Annie Lindqvist, status is online."
+                            imageAlt=""
                             
                             onClick={ () => { this.setState({isShown: !this.state.isShown})}}
                         />
@@ -66,8 +66,7 @@ export class View_Persona extends Component {
                     >
                         <Dropdown className ="Dropdown"
                             label="Hur mår du idag?"
-                            placeholder="Select an option"
-                            
+                            placeholder="Välj ett alternativ"
                             options={statusOptions}
                             onChange={ ({}, item) => this.changeStatus(item, this.props.id) }
                         />

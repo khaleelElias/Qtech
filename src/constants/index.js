@@ -16,7 +16,7 @@ function getWeekNumber() {
     // Calculate full weeks to nearest Thursday
     var weekNo = Math.ceil(( ( (date - yearStart) / 86400000) + 1)/7);
     // Return array of year and week number
-    return weekNo;
+    return "Vecka: " + weekNo;
 }
 
 export {
