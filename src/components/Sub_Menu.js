@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react'
-import { ActionButton, IIconProps, CommandBar, CommandBarButton } from 'office-ui-fabric-react';
+
+import { CommandBarButton } from 'office-ui-fabric-react';
 import { PrimaryButton } from 'office-ui-fabric-react';
 import { Dropdown } from 'office-ui-fabric-react/lib/Dropdown';
 import './style.css'
@@ -8,24 +9,25 @@ import { initializeIcons  } from 'office-ui-fabric-react';
 import { Modal } from 'office-ui-fabric-react';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import {statusOptions} from '../constants/index'
+import {  Redirect } from "react-router-dom"; 
 
-import { useHistory } from "react-router-dom";
 
-
-export class Sub_Menu extends Component {    
+export class Sub_Menu extends Component {   
   constructor(props) {
       super(props)
+
       initializeIcons()
 
       this.state = {
           showModul: false, 
           username:"",
-          status: "good"
+          status: "good",
+          redirect: false,
       }
   }
 
   createUser = (username, status) => {
-    fetch('/users/create', {
+    fetch('/users', {
         method:"POST",
         headers:{
             "Content-Type":"application/json"
@@ -43,15 +45,21 @@ export class Sub_Menu extends Component {
       }).catch(error => {
         console.log("error creating user", error)
     })
-}
-  
+  }
+
+  redirectFunc = () =>  {
+    this.props.history.push('/CreateColumn')
+    console.log("sub-menu history: ", this.props.history)
+    //this.setState({ redirect: true})
+  }
    
   subMenuProps = {
     items: [
       {
         key: 'Projekt',
         text: 'Projekt',
-        iconProps: { iconName: 'ProjectLogoFill16' }
+        iconProps: { iconName: 'ProjectLogoFill16' },
+        onClick: () => { this.redirectFunc() }
       },
       {
         key: 'Aktivitet',
@@ -70,12 +78,14 @@ export class Sub_Menu extends Component {
   render() {
     if(this.state.showModul)
       console.log("render")
+    else if(this.state.redirect)
+      return (
+        <Redirect to='/CreateColumn' props=""/>
+      )
     else
       console.log("false")
       return (
           <div>
-            
-           
             <CommandBarButton 
               style={{margin:10, padding:10}}
               items={this._items}
@@ -101,7 +111,7 @@ export class Sub_Menu extends Component {
                 options={statusOptions}
                 />
 
-              <PrimaryButton text="Lägg till" onClick = { () => { this.createUser(this.state.username, this.state.status)}} style={{marginTop: "10px"}} />
+              <PrimaryButton text="Lägg till" onClick = { () => { this.createUser(this.state.username, this.state.status); this.props.reloadData();}} style={{marginTop: "10px"}} />
             </form>
 
            </Modal>

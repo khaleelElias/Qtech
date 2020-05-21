@@ -5,8 +5,6 @@ import { getWeekNumber } from '../constants/index'
 import { View_Persona } from './View_Persona' 
 import { Sub_Menu } from './Sub_Menu'
 
-
-
 export class CardBox extends React.Component{
 
     constructor(props){
@@ -14,11 +12,8 @@ export class CardBox extends React.Component{
         this.state = {
             data: []
         }
-
         this.loadData()
-    
     }
-
 
     loadData = () => {
         fetch('/users')
@@ -27,8 +22,6 @@ export class CardBox extends React.Component{
             console.log(res)
             //this.setState({ data: [...this.state.data, ...res.users ]}) //create user
             this.setState({data: [...res.users]})
-
-
         }).catch( error => {
             console.log("error: ", error)
         })
@@ -49,7 +42,7 @@ export class CardBox extends React.Component{
                                 })
                             }
 
-                            <Sub_Menu reloadData={this.loadData.bind(this)}/>
+                            <Sub_Menu reloadData={this.loadData.bind(this)} history={this.props.history} />
                             
                             <h2>vecka: {getWeekNumber()}</h2>
 
