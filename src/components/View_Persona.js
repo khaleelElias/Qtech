@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Callout} from 'office-ui-fabric-react';
 import { Dropdown } from 'office-ui-fabric-react/lib/Dropdown';
 import {Persona, PersonaSize, PersonaPresence } from 'office-ui-fabric-react/lib/Persona';
-import './style.css';
+import '../public/style.css'
 import {statusOptions} from '../constants/index'
 
 export class View_Persona extends Component {

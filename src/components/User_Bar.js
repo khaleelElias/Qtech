@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { CommandBarButton } from 'office-ui-fabric-react';
 
-import './style.css'
+import '../public/style.css'
 import { Stack } from 'office-ui-fabric-react/lib/Stack';
 import { getWeekNumber } from '../constants/index'
 import { View_Persona } from './View_Persona' 
-import { Sub_Menu } from './Sub_Menu'
+import { Action_Menu } from './Action_Menu'
 
 export class CardBox extends React.Component{
 
@@ -44,19 +44,13 @@ export class CardBox extends React.Component{
                                 })
                             }
 
-                            <Sub_Menu reloadData={this.loadData.bind(this)} history={this.props.history} />
-                            <h2>vecka: {getWeekNumber()}</h2>
+                            <Action_Menu reloadData={this.loadData.bind(this)} history={this.props.history} />
+                            
 
                         </Stack>
                     </Stack>
                 </Stack>
-                <CommandBarButton 
-              style={{margin:10, padding:10}}
-              items={this._items}
-              text= {getWeekNumber()}
-              iconProps={{iconName: "Calendar"}}
-              menuProps={this.subMenuProps}  
-            />
+               
             </div>
         )
     }

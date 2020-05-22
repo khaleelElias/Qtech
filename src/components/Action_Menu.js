@@ -4,14 +4,14 @@ import React, { Component } from 'react'
 import { CommandBarButton } from 'office-ui-fabric-react';
 import { PrimaryButton } from 'office-ui-fabric-react';
 import { Dropdown } from 'office-ui-fabric-react/lib/Dropdown';
-import './style.css'
+import '../public/style.css'
 import { initializeIcons  } from 'office-ui-fabric-react';
 import { Modal } from 'office-ui-fabric-react';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import {withRouter} from 'react-router-dom';
 import {statusOptions} from '../constants/index'
 
-export class Sub_Menu extends Component {   
+export class Action_Menu extends Component {   
   constructor(props) {
       super(props)
 
@@ -59,8 +59,8 @@ export class Sub_Menu extends Component {
         onClick: () => { this.redirectFunc() }
       },
       {
-        key: 'Aktivitet',
-        text: 'Aktivitet',
+        key: 'Avdelning',
+        text: 'Avdelning',
         iconProps: { iconName: 'AccountActivity' },
       },
       {

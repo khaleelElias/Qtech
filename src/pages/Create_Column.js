@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from "react-router-dom"; 
+import '../public/style.css'
 
 export class Create_Column extends Component {
     constructor(props) {
@@ -35,6 +36,13 @@ export class Create_Column extends Component {
                     <input type="submit" value="Submit"/>
                     
                 </form>
+                <div className =" fahed">
+                    <h2>khaleel</h2>
+                    <div className = "khaleel">
+                        <p>lista</p>
+                        <p>lista</p><p>lista</p><p>lista</p><p>lista</p><p>lista</p><p>lista</p><p>lista</p>
+                    </div>
+                </div>
             </div>
         );
     }
