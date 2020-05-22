@@ -30,7 +30,7 @@ export class Home extends React.Component{
                     <a href="https://qtechgroup.sharepoint.com/SitePages/Intranet.aspx">
                         <img class = "img" src={qtechgroup}  alt=''/>
                     </a>
-                    <Navbar history={this.props.history} />
+                    <Navbar history={this.props.history} loadData={this.loadData.bind(this)}/>
                 </header>
 
                 <Stack horizontal style={{width:"100%", display:"flex"}}>

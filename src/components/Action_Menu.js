@@ -1,6 +1,5 @@
 
 import React, { Component } from 'react'
-
 import { CommandBarButton } from 'office-ui-fabric-react';
 import { PrimaryButton } from 'office-ui-fabric-react';
 import { Dropdown } from 'office-ui-fabric-react/lib/Dropdown';
@@ -13,36 +12,34 @@ import {statusOptions} from '../constants/index'
 
 export class Action_Menu extends Component {   
   constructor(props) {
-      super(props)
+    super(props)
 
-      initializeIcons()
+    initializeIcons()
 
-      this.state = {
-          showModul: false, 
-          username:"",
-          status: "good",
-          redirect: false,
-      }
+    this.state = {
+        showModul: false, 
+        username:"",
+        status: "good",
+    }
   }
 
   createUser = (username, status) => {
+    console.log("createUser!!!!!!")
+    console.log("username: " + username + " status: " + status)
     fetch('/users', {
-        method:"POST",
-        headers:{
-            "Content-Type":"application/json"
-        },
-        body: JSON.stringify({
-            username,
-            status
-        })
+      method: 'POST',
+      headers:  {
+        'Content-Type': 'application/x-www-form-urlencoded'      
+      },
+      body: "username=" + username + "&status=" + status
     })
     .then(Response => Response.json())
-    .then( () => {  
-        this.props.reloadData()
-        this.setState({showModul:false});
-
-      }).catch(error => {
-        console.log("error creating user", error)
+    .then( (res) => {
+      console.log("createUser-----")
+      this.props.reloadData()
+      this.setState({showModul:false});
+    }).catch(error => {
+      console.log("error creating user", error)
     })
   }
 
@@ -112,7 +109,3 @@ export class Action_Menu extends Component {
       )
   }
 }
-function _alertClicked() {
-  alert('Clicked');
-}
-
