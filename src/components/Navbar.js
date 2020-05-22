@@ -17,7 +17,7 @@ export class Navbar extends Component {
             <div>
                 <Stack horizontal>
                 <Week_Number/>
-                <Action_Menu/>
+                <Action_Menu reloadData={this.loadData.bind(this)} history={this.props.history} />
                 </Stack>
             </div>
         )
