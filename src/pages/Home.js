@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Stack, initializeIcons  } from 'office-ui-fabric-react';
-import { CardBox } from '../components/User_Bar'
+import { UserBar } from '../components/User_Bar'
 import { Column } from '../components/Column'
 import '../public/style.css'
 import  qtechgroup from '../public/qtechgroup.png'
@@ -14,8 +14,11 @@ export class Home extends React.Component{
         initializeIcons()
 
         this.state = {
+            users: [],
             columns: []
         }
+
+        this.loadData()
         this.fetchColumns()
        
     }
@@ -27,11 +30,11 @@ export class Home extends React.Component{
                     <a href="https://qtechgroup.sharepoint.com/SitePages/Intranet.aspx">
                         <img class = "img" src={qtechgroup}  alt=''/>
                     </a>
-                    <Navbar/>
+                    <Navbar history={this.props.history} />
                 </header>
 
                 <Stack horizontal style={{width:"100%", display:"flex"}}>
-                    < CardBox history={ this.props.history } />
+                    <UserBar history={ this.props.history } users={this.state.users} />
                 </Stack>
                 <Stack horizontal>
                     <Information_Box/>
@@ -58,5 +61,16 @@ export class Home extends React.Component{
         }).catch(error => {
             console.log(error)
         });
+    }
+
+    loadData = () => {
+        fetch('/users')
+        .then(Response => Response.json())
+        .then(res => {
+            console.log(res)
+            this.setState({users: [...res.users]})
+        }).catch( error => {
+            console.log("error: ", error)
+        })
     }
 }
