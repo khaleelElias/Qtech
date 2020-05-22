@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { withRouter } from "react-router-dom"; 
 import '../public/style.css'
 
 export class Create_Column extends Component {
@@ -49,7 +48,6 @@ export class Create_Column extends Component {
         fetch('/columns', {
             method: 'POST',
             headers: {
-                //'Content-Type': 'application/json'
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             body: "title=" + this.state.title + "&message=" + this.state.message + "&supervisor=" + this.state.supervisor
