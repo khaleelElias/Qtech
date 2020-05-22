@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from "react-router-dom"; 
+import '../public/style.css'
 
 export class Create_Column extends Component {
     constructor(props) {

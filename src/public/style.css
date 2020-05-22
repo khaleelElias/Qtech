@@ -35,7 +35,6 @@
   }
 
   .columnStyle{
-  
     height: 400px;
     width: 300px;
     background-color:#faebd7;
@@ -55,3 +54,10 @@
     text-align: center;
   }
  
+ .Calender_logo{
+  width: 60px;
+  
+ }
+ .img{
+   padding: 12px;
+ }

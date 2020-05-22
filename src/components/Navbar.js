@@ -1,61 +1,27 @@
-import * as React from 'react';
-import { IPersonaSharedProps, Persona, PersonaSize, PersonaPresence } from 'office-ui-fabric-react/lib/Persona';
-import { Label } from 'office-ui-fabric-react/lib/Label';
-import { Stack } from 'office-ui-fabric-react/lib/Stack';
-import { mergeStyles } from 'office-ui-fabric-react/lib/Styling';
-import { Callout} from 'office-ui-fabric-react';
+import React, { Component } from 'react'
+import {Action_Menu} from './Action_Menu'
+import {Week_Number} from './Week_Number'
+import { Stack } from 'office-ui-fabric-react'
 
-const dummyData = [ {name:"Khaleel Elias", online:"online"} , {name:"Robin Sauma", online:"busy"}, {name:"Robin Sauma", online:"busy"}, {name:"Robin Sauma", online:"busy"}, {name:"Robin Sauma", online:"busy"},{name:"Khaleel Elias", online:"online"} , {name:"Robin Sauma", online:"busy"}, {name:"Robin Sauma", online:"busy"}, {name:"D E", online:"do not disturb"}, {name:"A B", online:"away"}]
-
-export class Navbar extends React.Component{
-
-    constructor(props){
+export class Navbar extends Component {
+    constructor(props) {
         super(props)
 
         this.state = {
-            isShown: false
-        }  
+                 
+        }
     }
 
     render() {
-        return(
+        return (
             <div>
                 <Stack horizontal>
-                    <Stack>
-                        <Stack horizontal>
-                            {
-                                dummyData.map( (value, index) => {
-                                    return (
-                                        <div class = "elias">
-                                        <Persona class = "khaleel"
-                                            text={value.name}
-                                            key={"person: "+ index}
-                                            size={PersonaSize.size32}
-                                            hidePersonaDetails
-                                            presence={PersonaPresence[value.online]}
-                                            imageAlt="Annie Lindqvist, status is online."
-                                            onClick={ () => { this.setState({isShown: !this.state.isShown}) }}
-                                        />
-                                        </div>
-                                    )
-                                })
-                            }
-                            {
-                                this.state.isShown && (
-                                    <Callout>
-                                        <p>Text</p>
-                                    </Callout>
-                                    )
-                                
-                            }
-                        </Stack>
-                    </Stack>
+                <Week_Number/>
+                <Action_Menu/>
                 </Stack>
             </div>
         )
     }
-
 }
 
-;
-export default Navbar;
+

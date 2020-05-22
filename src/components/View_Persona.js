@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Callout} from 'office-ui-fabric-react';
 import { Dropdown } from 'office-ui-fabric-react/lib/Dropdown';
 import {Persona, PersonaSize, PersonaPresence } from 'office-ui-fabric-react/lib/Persona';
-import './style.css';
+import '../public/style.css'
 import {statusOptions} from '../constants/index'
 
 export class View_Persona extends Component {
@@ -52,7 +52,7 @@ export class View_Persona extends Component {
                             size={PersonaSize.size32}
                             hidePersonaDetails
                             presence={this.switchStatus[this.props.status]}
-                            imageAlt="Annie Lindqvist, status is online."
+                            imageAlt=""
                             
                             onClick={ () => { this.setState({isShown: !this.state.isShown})}}
                         />
@@ -64,8 +64,7 @@ export class View_Persona extends Component {
                     onDismiss={ () => this.setState({isShown: false})} >
                         <Dropdown className ="Dropdown"
                             label="Hur mår du idag?"
-                            placeholder="Select an option"
-                            
+                            placeholder="Välj ett alternativ"
                             options={statusOptions}
                             onChange={ ({}, item) => this.changeStatus(item, this.props.id) }
                         />

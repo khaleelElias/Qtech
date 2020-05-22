@@ -1,8 +1,8 @@
 import React, { Component }  from 'react';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
-import { Home } from '../components/Home'
-import { Create_Column } from '../components/Create_Column'
+import { Home } from '../pages/Home'
+import { Create_Column } from '../pages/Create_Column'
 
 export default function Routes(){
     return(
