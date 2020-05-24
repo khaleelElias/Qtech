@@ -7,7 +7,6 @@ import '../public/style.css'
 import { initializeIcons  } from 'office-ui-fabric-react';
 import { Modal } from 'office-ui-fabric-react';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
-import {withRouter} from 'react-router-dom';
 import {statusOptions} from '../constants/index'
 
 export class Action_Menu extends Component {   
@@ -24,8 +23,6 @@ export class Action_Menu extends Component {
   }
 
   createUser = (username, status) => {
-    console.log("createUser!!!!!!")
-    console.log("username: " + username + " status: " + status)
     fetch('/users', {
       method: 'POST',
       headers:  {
@@ -35,7 +32,6 @@ export class Action_Menu extends Component {
     })
     .then(Response => Response.json())
     .then( (res) => {
-      console.log("createUser-----")
       this.props.reloadData()
       this.setState({showModul:false});
     }).catch(error => {
@@ -70,9 +66,7 @@ export class Action_Menu extends Component {
   }
 
   render() {
-    if(this.state.showModul)
-      console.log("render")
-    else
+    if(!this.state.showModul)
       console.log("false")
       return (
           <div>
@@ -97,7 +91,6 @@ export class Action_Menu extends Component {
                 label="Hur mår du idag?"
                 placeholder="Välj ett alternativ"
                 onChange={ ({}, item) => this.setState({status:item.key}) }
-
                 options={statusOptions}
                 />
 

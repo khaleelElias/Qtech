@@ -20,7 +20,6 @@ export class Home extends React.Component{
 
         this.loadData()
         this.fetchColumns()
-       
     }
 
     render() {
@@ -34,9 +33,9 @@ export class Home extends React.Component{
                 </header>
 
                 <Stack horizontal style={{width:"100%", display:"flex"}}>
-                    <UserBar history={ this.props.history } users={this.state.users} />
+                    <UserBar history={ this.props.history } users={this.state.users} loadData={ this.loadData.bind(this) }/>
                 </Stack>
-                <Stack horizontal>
+                <Stack vertical>
                     <Information_Box/>
                     {
                        // this.state.columns.slice(0, 30).map( (value, index) => {
@@ -46,6 +45,16 @@ export class Home extends React.Component{
                        // })
                     }
                 </Stack>
+                <Stack vertical>
+                    {
+                        this.state.columns.slice(0, 30).map( (column, index) => {
+                            return (
+                                <Column column={column} supervisor={() => { this.getUserById(column.supervisor) }} />
+                            )
+                        })
+                    }
+                </Stack>
+
             </div>
         );
     }
@@ -72,5 +81,13 @@ export class Home extends React.Component{
         }).catch( error => {
             console.log("error: ", error)
         })
+    }
+
+    getUserById = (id) => {
+        for(var i = 0; i < this.state.users.length; i++)    {
+            if(this.state.users[i].id === id)
+                return this.state.users
+        }
+        return -1;
     }
 }
