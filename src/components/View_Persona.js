@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { Callout} from 'office-ui-fabric-react';
+import { Callout, IconButton } from 'office-ui-fabric-react';
 import { Dropdown } from 'office-ui-fabric-react/lib/Dropdown';
-import {Persona, PersonaSize, PersonaPresence } from 'office-ui-fabric-react/lib/Persona';
+import { Persona, PersonaSize, PersonaPresence } from 'office-ui-fabric-react/lib/Persona';
 import '../public/style.css'
 import {statusOptions} from '../constants/index'
 
@@ -14,6 +14,7 @@ export class View_Persona extends Component {
             changeing: false
         }
     }
+
 
     changeStatus = (status, id) => {
         fetch('/users/status', {
@@ -28,8 +29,27 @@ export class View_Persona extends Component {
         })
         .then(Response => Response.json())
         .then( () => {
-            this.setState({isShown:false})
-            this.props.reloadData()
+            this.setState({ isShown: false })
+            this.props.loadData()
+        }).catch(error => {
+            console.log("error status", error)
+        })
+    }
+    
+    deleteUser = (id) => {
+        fetch('/users', {
+            method:"DELETE",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body: JSON.stringify({
+                id
+            })
+        })
+        .then(Response => Response.json())
+        .then( () => {
+            this.setState({ isShown: false })
+            this.props.loadData()
         }).catch(error => {
             console.log("error status", error)
         })
@@ -68,6 +88,7 @@ export class View_Persona extends Component {
                             options={statusOptions}
                             onChange={ ({}, item) => this.changeStatus(item, this.props.id) }
                         />
+                        <IconButton iconProps={{iconName: "Delete"}} title="Delete" ariaLabel="Delete" onClick={ () => { this.deleteUser(this.props.id) }} />
                     </Callout>
                     )
                 }

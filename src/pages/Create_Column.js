@@ -4,12 +4,11 @@ import '../public/style.css'
 export class Create_Column extends Component {
     constructor(props) {
         super(props)
-        console.log("createColumn: ", props)
 
         this.state = {
             title: String,
             message: String,
-            supervisor: 1,
+            supervisor: -1,
             users: []
         }
 
@@ -19,9 +18,7 @@ export class Create_Column extends Component {
 
     render() {
         return (
-            
-                <div class='columnStyle'>
-
+            <div class='columnStyle'>
                 <h2 class='h2'> Projekt </h2>
                 <hr class='hr'/>
                 <form onSubmit={this.createColumn}>
@@ -35,11 +32,10 @@ export class Create_Column extends Component {
                     </select>
                     <label for="supervisor"> {this.state.supervisor} </label><br/>
                     <br/>
+                    <input type="button" value="Cancel" onClick={ () => { this.props.history.push('/')} }/>
                     <input type="submit" value="Submit"/>
                 </form>
-
-                </div>
-            
+            </div>
         );
     }
 
@@ -51,13 +47,11 @@ export class Create_Column extends Component {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             body: "title=" + this.state.title + "&message=" + this.state.message + "&supervisor=" + this.state.supervisor
+            + "&type=1"
         }).then(response => 
             response.json()
         ).then(res => {
-            console.log(res)
-            //länk till startsida 
             this.props.history.push('/')
-        
         }).catch(error => {
             console.log(error)
         });
@@ -66,20 +60,15 @@ export class Create_Column extends Component {
     loadUsers = () => {
         fetch('/users')
         .then(Response => Response.json())
-        .then(res => {
-            console.log(res)
-            
+        .then(res => {            
             let usersFromApi = res.users.map( user =>   {
                 return {key: user.id, value: user.username }
             });
 
             this.setState({ users: [{key: '', value: '(Välj en ansvarig!)'}].concat(usersFromApi)})
-            console.log(this.state.users)
-
         }).catch( error => {
             console.log("error: ", error)
         })
     }
-
 }
 
