@@ -60,7 +60,7 @@ export class Create_Column extends Component {
     loadUsers = () => {
         fetch('/users')
         .then(Response => Response.json())
-        .then(res => {            
+        .then(res => {
             let usersFromApi = res.users.map( user =>   {
                 return {key: user.id, value: user.username }
             });
