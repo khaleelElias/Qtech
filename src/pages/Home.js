@@ -6,6 +6,7 @@ import '../public/style.css'
 import  qtechgroup from '../public/qtechgroup.png'
 import { Navbar } from '../components/Navbar'
 import { Information_Box } from '../components/Information_Box'
+import { Dashboard } from '../components/Dashboard'
 
 export class Home extends React.Component{
 
@@ -35,26 +36,9 @@ export class Home extends React.Component{
                 <Stack horizontal style={{width:"100%", display:"flex"}}>
                     <UserBar history={ this.props.history } users={this.state.users} loadData={ this.loadData.bind(this) }/>
                 </Stack>
-                <Stack vertical>
-                    <Information_Box/>
-                    {
-                       // this.state.columns.slice(0, 30).map( (value, index) => {
-                           // return (
-                                //<Column column={value} />
-                          //  )
-                       // })
-                    }
-                </Stack>
-                <Stack vertical>
-                    {
-                        this.state.columns.slice(0, 30).map( (column, index) => {
-                            return (
-                                <Column column={column} />
-                            )
-                        })
-                    }
-                </Stack>
-            </div>
+              
+                <Dashboard />
+                </div>
         );
     }
 
@@ -81,4 +65,22 @@ export class Home extends React.Component{
             console.log("error: ", error)
         })
     }
+
+    
 }
+
+
+/*
+
+<Stack vertical>
+                    {
+                        this.state.columns.slice(0, 30).map( (column, index) => {
+                            return (
+                                <Column column={column} />
+                            )
+                        })
+                    }
+                </Stack>
+            
+
+*/

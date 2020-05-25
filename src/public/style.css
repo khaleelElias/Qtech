@@ -61,3 +61,21 @@
  .img{
    padding: 12px;
  }
+
+ .dashboardHeight {
+   height: "100%";
+   border: 1px solid gray;
+ }
+ .Dashboard_Columns{
+   margin: 1%;
+   border: 1px solid gray;
+   
+
+ }
+ .dashboardHeaders {
+   border: 1px solid gray;
+   text-align: center;
+   border-radius: 10px;
+   margin: 20px;
+   background-color: #c6c6c6;
+ }

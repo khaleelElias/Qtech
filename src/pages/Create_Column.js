@@ -26,7 +26,7 @@ export class Create_Column extends Component {
                     <input type="text" value={this.state.title} onChange={ (e) => {this.setState({title: e.target.value}) }} placeholder="Title" /> <br/>
                     
                     <label for="lname">Innehåll:</label><br/>
-                    <input type="text" value={this.state.message} onChange={ (e) => {this.setState({message: e.target.value}) }} placeholder="Innehåll" /><br/> 
+                    <textarea type="text" value={this.state.message} onChange={ (e) => {this.setState({message: e.target.value}) }} placeholder="Innehåll" /><br/> 
                     <select onChange={(e) => this.setState({ supervisor: e.target.value})}>
                         {this.state.users.map((user) => <option key={user.key} value={user.key}>{user.value}</option>)}
                     </select>
