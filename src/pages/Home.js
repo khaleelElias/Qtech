@@ -6,6 +6,7 @@ import '../public/style.css'
 import  qtechgroup from '../public/qtechgroup.png'
 import { Navbar } from '../components/Navbar'
 import { Information_Box } from '../components/Information_Box'
+import { Background } from '../public/backGround.png';
 
 export class Home extends React.Component{
 
@@ -24,6 +25,7 @@ export class Home extends React.Component{
 
     render() {
         return(
+            
             <div class = "header">
                 <header style={{backgroundImage:"linear-gradient(#bdc3c7,#cfe3d8)"}}>
                     <a href="https://qtechgroup.sharepoint.com/SitePages/Intranet.aspx">
