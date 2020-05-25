@@ -12,8 +12,7 @@ export class Information_Box extends Component {
     render() {
         return (
             <div className = "">
-
-                    <h1>khaleel</h1>
+                
             </div>
         )
     }

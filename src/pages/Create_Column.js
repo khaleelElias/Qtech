@@ -18,9 +18,9 @@ export class Create_Column extends Component {
 
     render() {
         return (
-            <div class='columnStyle'>
-                <h2 class='h2'> Projekt </h2>
-                <hr class='hr'/>
+            <div className='columnStyle'>
+                <h2 className='h2'> Projekt </h2>
+                <hr className='hr'/>
                 <form onSubmit={this.createColumn}>
                     <label for="fname">Titel:</label><br/>
                     <input type="text" value={this.state.title} onChange={ (e) => {this.setState({title: e.target.value}) }} placeholder="Title" /> <br/>

@@ -11,7 +11,6 @@ export class View_Persona extends Component {
 
         this.state = {
             isShown: false,
-            changeing: false
         }
     }
 
@@ -62,10 +61,11 @@ export class View_Persona extends Component {
     }
 
     render() {
+        
         return (
             <div>
-                <div class = "header">                              
-                    <div class = "persona">
+                <div className = "header">                              
+                    <div className = "persona">
                         <Persona
                             text={this.props.name}
                             key={"keyOfPersona: " + this.props.index}
@@ -73,7 +73,6 @@ export class View_Persona extends Component {
                             hidePersonaDetails
                             presence={this.switchStatus[this.props.status]}
                             imageAlt=""
-                            
                             onClick={ () => { this.setState({isShown: !this.state.isShown})}}
                         />
                     </div>
