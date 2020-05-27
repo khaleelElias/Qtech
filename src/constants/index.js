@@ -1,8 +1,10 @@
 const statusOptions = [
-    { key: 'good', text: 'Mår bra'},
-    { key: 'bad', text: 'Stressigt' },
-    { key: 'well', text:'Ganska väl' },
+    { key: 'good', text: 'God Balans'},
+    { key: 'well', text:'Stressigt' },
+    { key: 'bad', text: 'Mycket stressigt' },
+    
 ]
+
 
 
 function getWeekNumber() {
