@@ -5,7 +5,6 @@ import { Column } from '../components/Column'
 import '../public/style.css'
 import  qtechgroup from '../public/qtechgroup.png'
 import { Navbar } from '../components/Navbar'
-import { Information_Box } from '../components/Information_Box'
 import { Dashboard } from '../components/Dashboard'
 
 export class Home extends React.Component{
@@ -25,19 +24,17 @@ export class Home extends React.Component{
 
     render() {
         return(
-            <div className = "header">
-                <header style={{backgroundImage:"linear-gradient(#bdc3c7,#cfe3d8)"}}>
+            <div>
+                <header className="header">
                     <a href="https://qtechgroup.sharepoint.com/SitePages/Intranet.aspx">
                         <img className = "img" src={qtechgroup}  alt=''/>
                     </a>
                     <Navbar history={this.props.history} loadData={this.loadData.bind(this)}/>
                 </header>
 
-                <Stack horizontal style={{width:"100%", display:"flex"}}>
-                    <UserBar history={ this.props.history } users={this.state.users} loadData={ this.loadData.bind(this) }/>
-                </Stack>
+               
               
-                <Dashboard />
+                <Dashboard history={this.props.history}/>
                 </div>
         );
     }
@@ -83,4 +80,8 @@ export class Home extends React.Component{
                 </Stack>
             
 
+
+                 <Stack horizontal style={{width:"100%", display:"flex"}}>
+                    <UserBar history={ this.props.history } users={this.state.users} loadData={ this.loadData.bind(this) }/>
+                </Stack>
 */

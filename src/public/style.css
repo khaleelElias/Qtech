@@ -1,7 +1,6 @@
-* {
-    box-sizing: border-box;
-    border: black;
-  }
+.header{
+  background-color:#c6c6c6;
+}
   
   /* Create two equal columns that floats next to each other */
   .column {
@@ -60,12 +59,16 @@
  }
  .img{
    padding: 12px;
+   
+ }
+ .Navbar{
+
+  background-color:#c6c6c6 ;
  }
 
  .dashboardHeight {
    height: "100%";
-   border: 1px solid gray;
- }
+}
  .Dashboard_Columns{
    margin: 1%;
    background-color: lightgreen;
@@ -73,14 +76,28 @@
    border-radius: 5px;
    border-block-start: 0.1rem solid #32a1ce;
    border-block-end: 0.1rem solid #32a1ce;
-  
-
  }
  .dashboardHeaders {
-   border: 1px solid gray;
    text-align: center;
    border-radius: 5px;
    margin: 20px;
    background-color: #32a1ce;
  }
+.Dashboard_Titles{
+  border: 1px solid gray;
+  text-align: center;
+  border-radius: 10px;
+  margin: 20px;
+  padding:8px;
+  background-color: #c6c6c6;
+  
+}
+.Dashboard_Titles.css-54{
+  width: fit-content;
+  align-self: center;
 
+}
+.ms-Button{
+  width: fit-content;
+  align-self: center;
+}
