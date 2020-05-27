@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Stack, StackItem } from 'office-ui-fabric-react'
 import "../public/style.css"
 import { Activity, Order, Section, Project } from '../components/dashboard/index'
-import { Persona, Text } from 'office-ui-fabric-react'
+import { Persona,PersonaSize, Text } from 'office-ui-fabric-react'
 
 export class Dashboard extends Component {
     constructor(props) {
@@ -40,19 +40,23 @@ export class Dashboard extends Component {
             <div>
                 <Stack horizontal className="dashboardHeight">
                     <StackItem grow={1} verticalFill className = "Dashboard_Columns" >
-                        <h1 className="dashboardItems">Activity</h1>
+                        <Activity/>
                     </StackItem>
 
                     <StackItem grow={1} verticalFill className = "Dashboard_Columns">
-                    <h1 className="dashboardItems">Projekt</h1>
-                        
-                        
+                            <Stack horizontal horizontalAlign="center" gap={5} className="dashboardHeaders">
+                                <Text variant="xxLargePlus">Projekt</Text>
+                                <Persona />
+                            </Stack>
                     </StackItem>
                     
                     <StackItem grow={1} verticalFill className = "Dashboard_Columns">
                             <Stack horizontal horizontalAlign="center" gap={5} className="dashboardHeaders">
-                                <Text variant="xxLargePlus">Orders/ald</Text>
+                                <Text variant="xxLargePlus">Orders/Köp</Text>
+                                
                                 <Persona />
+
+                                
                             </Stack>
                         <Order/>
                     </StackItem>

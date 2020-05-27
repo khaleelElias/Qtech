@@ -68,14 +68,19 @@
  }
  .Dashboard_Columns{
    margin: 1%;
+   background-color: lightgreen;
    border: 1px solid gray;
-   
+   border-radius: 5px;
+   border-block-start: 0.1rem solid #32a1ce;
+   border-block-end: 0.1rem solid #32a1ce;
+  
 
  }
  .dashboardHeaders {
    border: 1px solid gray;
    text-align: center;
-   border-radius: 10px;
+   border-radius: 5px;
    margin: 20px;
-   background-color: #c6c6c6;
+   background-color: #32a1ce;
  }
+

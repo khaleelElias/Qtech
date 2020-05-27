@@ -33,6 +33,7 @@ export class Order extends Component {
     render() {
         return (
             this.state.ordersData.map( (order) => { return <p>{order.company + order.title + order.date}</p> })
+            
         )
     }
 }
