@@ -7,16 +7,15 @@ import { Action_Menu } from './Action_Menu'
 
 export class UserBar extends React.Component{
     render() {
-        console.log("data: " , this.props.users)
         return(
-            <div class = "header ">
+            <div className = "header ">
                 <Stack horizontal>
                     <Stack>
                         <Stack horizontal>
                             {
                                 this.props.users.slice(0, 30).map( (value, index) => {
                                     return (
-                                       <View_Persona name={value.username} status={value.status} id={value.id} index={index} loadData={this.props.loadData} />
+                                       <View_Persona name={value.username} status={value.status} id={value.id} index={index} loadData={this.props.loadData} type="0" />
                                     )
                                 })
                             }

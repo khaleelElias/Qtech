@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export class Information_Box extends Component {
+export class Section extends Component {
     constructor(props) {
         super(props)
 
@@ -11,11 +11,10 @@ export class Information_Box extends Component {
 
     render() {
         return (
-            <div className = "">
+            <div>
                 
             </div>
         )
     }
 }
-
 
