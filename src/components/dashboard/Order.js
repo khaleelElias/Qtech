@@ -1,6 +1,23 @@
 import React, { Component } from 'react'
 import { Persona, PersonaSize,  Text, divProperties, Stack, DefaultButton, personaSize, StackItem } from 'office-ui-fabric-react'
+import { mergeStyles, mergeStyleSets } from 'office-ui-fabric-react/lib/Styling';
+import { FontIcon } from 'office-ui-fabric-react/lib/Icon';
 
+
+
+
+
+const iconClass = mergeStyles({
+    fontSize: 40,
+    height: 40,
+    width: 40,
+    margin: '0 25px',
+  });
+  const classNames = mergeStyleSets({
+    deepSkyBlue: [{ color: 'gray' }, iconClass],
+    greenYellow: [{ color: 'greenyellow' }, iconClass],
+    salmon: [{ color: 'salmon' }, iconClass],
+  });
 
 export class Order extends Component {
     constructor(props) {
@@ -39,9 +56,9 @@ export class Order extends Component {
         
         return (
             <div>
-                
                 <Stack >
-                    <Stack horizontal className = "Dashboard_Titles">
+                    <Stack horizontal  gap = {8} className = "Dashboard_Titles">
+                        <FontIcon className={classNames.deepSkyBlue}  iconName="ReservationOrders"/>
                         <DefaultButton   text="ORDER/INKÖP" onClick={() => {this.redirectFunc()}} />
                         <Persona size={PersonaSize.size40}/>
                     </Stack>

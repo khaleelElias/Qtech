@@ -15,7 +15,7 @@ export class UserBar extends React.Component{
                             {
                                 this.props.users.slice(0, 30).map( (value, index) => {
                                     return (
-                                       <View_Persona name={value.username} status={value.status} id={value.id} index={index} loadData={this.props.loadData} type="0" />
+                                       <View_Persona name={value.username} status={value.status} id={value.id} index={index} loadData={this.props.loadData} type="0" hidePersonaDetails={true} />
                                     )
                                 })
                             }

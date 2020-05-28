@@ -70,7 +70,7 @@ export class View_Persona extends Component {
                             text={this.props.name}
                             key={"keyOfPersona: " + this.props.index}
                             size={PersonaSize.size32}
-                            hidePersonaDetails
+                            hidePersonaDetails={this.props.hidePersonaDetails}
                             presence={this.switchStatus[this.props.status]}
                             imageAlt=""
                             onClick={ () => { this.setState({isShown: !this.state.isShown})}}

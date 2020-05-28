@@ -14,7 +14,7 @@ export class Dashboard extends Component {
             <div>
                 <Stack horizontal className="dashboardHeight" >
                     <StackItem grow={1} verticalFill className = "Dashboard_Columns" >
-                        <Activity/>
+                        <Activity loadData={this.props.loadData}/>
                     </StackItem>
 
                     <StackItem grow={1} verticalFill className = "Dashboard_Columns">

@@ -13,10 +13,15 @@ export class Section extends Component {
     render() {
         return (
             <Stack>
-                <DefaultButton  className = "Dashboard_Titles" text="SECTION"/>
+                <Stack >
+                    <Stack horizontal  gap = {8} className = "Dashboard_Titles">
+                        <DefaultButton   text="SECTION" onClick={() => {this.redirectFunc()}} />
+                        <Persona size={PersonaSize.size40}/>
+                    </Stack>
+                    <Text style = {{textAlign: "center", fontFamily: "Times"}}>Här kan ni se alla våra sneakers som vi har inne i butiken. Sneakers-modeller från Nike Air Max 90, Nike Air Force 1, Nike Air Max 270, Nike VaporMax, adidas Superstar, adidas Stan Smith, adidas Continental 80, FILA Disruptor, Converse All Star, Reebok Classic Leather</Text>
+                   
                 
-                <Text style = {{textAlign: "center", fontFamily: "Times"}}>Här kan ni se alla våra sneakers som vi har inne i butiken. Sneakers-modeller från Nike Air Max 90, Nike Air Force 1, Nike Air Max 270, Nike VaporMax, adidas Superstar, adidas Stan Smith, adidas Continental 80, FILA Disruptor, Converse All Star, Reebok Classic Leather</Text>
-
+                </Stack>
             </Stack>
         )
     }
