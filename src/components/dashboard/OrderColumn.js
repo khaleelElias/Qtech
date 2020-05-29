@@ -13,7 +13,6 @@ export class Order extends Component {
         this.getOrders()
     }
 
-
     getOrders = () => {
         fetch("/orders", {
             method:'GET',
@@ -30,6 +29,7 @@ export class Order extends Component {
             console.error("error fetching orders: ", error)
         })
     }
+
     redirectFunc = () =>  {
         this.props.history.push('/EditOrder')
       }

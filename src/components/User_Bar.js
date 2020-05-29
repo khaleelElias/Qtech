@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 import '../public/style.css'
 import { Stack } from 'office-ui-fabric-react/lib/Stack';
 import { View_Persona } from './View_Persona' 

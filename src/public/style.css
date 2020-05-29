@@ -11,6 +11,24 @@
     padding: 10px;
     height: 20%; /* Should be removed. Only for demonstration */
   }
+
+  .statusCircle {
+    width: 15px;
+    height: 15px;
+    margin-top: 2px !important;
+    margin-left: 5px !important;
+    border-radius: 50%;
+    border: black solid 1px;
+  }
+
+  .orderColumn {
+    float: left;
+    width: 40%;
+    border:solid;
+    border-radius: 10px;
+    padding: 10px;
+    height: 20%; /* Should be removed. Only for demonstration */
+  }
   
   /* Clear floats after the columns */
   .row:after {
@@ -19,20 +37,15 @@
     clear: both;
   }
   .Dropdown{
-
     padding : 23px;
     border-radius:20px ;
   }
   .Modal_New_User{
-    padding: 15px;
-    
-    
+    padding: 10px;
   }
   .TextField{
-
-    padding: 15px;
+    padding: 5px;
   }
-
   .columnStyle{
     height: 400px;
     width: 300px;
@@ -55,14 +68,11 @@
  
  .Calender_logo{
   width: 60px;
-  
  }
  .img{
-   padding: 12px;
-   
+  padding: 12px;
  }
  .Navbar{
-
   background-color:#c6c6c6 ;
  }
 
@@ -100,4 +110,10 @@
 .ms-Button{
   width: fit-content;
   align-self: center;
+}
+
+
+
+.ms-Toggle-thumb.thumb-63 {
+  
 }

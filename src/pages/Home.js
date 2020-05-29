@@ -30,9 +30,8 @@ export class Home extends React.Component{
                         <img className = "img" src={qtechgroup}  alt=''/>
                     </a>
                     <Navbar history={this.props.history} loadData={this.loadData.bind(this)}/>
+                    <UserBar users={this.state.users} />
                 </header>
-
-               
               
                 <Dashboard history={this.props.history}/>
                 </div>
