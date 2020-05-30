@@ -6,21 +6,22 @@ import { Stack, initializeIcons, Toggle, Modal, StackItem, DetailsList, Selectio
 import { TextField, MaskedTextField } from 'office-ui-fabric-react/lib/TextField';
 import { PrimaryButton } from 'office-ui-fabric-react';
 import { Dropdown } from 'office-ui-fabric-react/lib/Dropdown';
-import { statusOptions } from '../constants/index'
+import { userStatusOptions } from '../constants/index'
 import { Text, ITextProps } from 'office-ui-fabric-react/lib/Text';
 import { Order } from "../components/Order.js"
 import { StatusCircle } from '../components/statusCircle'
+import { switchOrderStatus } from '../constants/index'
 
 export class EditOrder extends Component {
     
-    _columns = [
+    _detailListColumns = [
         { 
             key: 'priorityColumn', 
             name: 'priority', 
             fieldName: 'priority', 
             minWidth: 50, 
             maxWidth: 100, 
-            onRender: (item) => { return <Toggle defaultChecked={item.priority === 1 ? true : false} onChange={(e, checked) => { this.updatePriority(item.id, checked)} } />}
+            onRender: (item) => { return <Toggle defaultChecked={item.priority === 1 ? true : false} onChange={(e, checked) => { this.updatePriority(item.id, checked)} } /> }
         },
         { 
             key: 'orderNrColumn',
@@ -78,7 +79,7 @@ export class EditOrder extends Component {
             date: "",
             status: "normal",
             columnId: 0,
-            priority: 0,
+            priority: false,
         }
 
         this.getOrders()
@@ -86,6 +87,7 @@ export class EditOrder extends Component {
 
 
     render() {
+        console.log("render?")
         return (
             <div>
                 <a href="https://qtechgroup.sharepoint.com/SitePages/Intranet.aspx">
@@ -93,16 +95,14 @@ export class EditOrder extends Component {
                 </a>
                 <Navbar />
                 <StackItem className = "Dashboard_Titles">
-                <Text variant={'xxLarge'}>  ORDER/INKÖP</Text>
+                    <Text variant={'xxLarge'}>  ORDER/INKÖP</Text>
                 </StackItem>
                 <div>
                     <PrimaryButton text="Skapa order" onClick = { () => { this.setState({ showModul: true }) }} style={{marginTop: "10px"}} />
                     <Stack>
-                        
-                        
                         <DetailsList
                             items={ this.state.orders }
-                            columns={this._columns}
+                            columns={this._detailListColumns}
                             setKey="set"
                             selectionMode={SelectionMode.none}
                         />
@@ -115,18 +115,18 @@ export class EditOrder extends Component {
                                 isBlocking={false}
                             >
                                 <form className="Modal_New_User">
-                                <h2>Lägg till ny order</h2>
-                                <TextField label="Order nummer" className ="TextField" value={this.state.orderNumber} onChange={(e) => {this.setState({ orderNumber: e.target.value}) }}/>
-                                <TextField label="Order company" className ="TextField" value={this.state.company} onChange={ (e) => { this.setState({company: e.target.value}) }}/>
-                                <TextField label="Order titel" className ="TextField" value={this.state.title} onChange={ (e) => { this.setState({ title: e.target.value}) }}/>
-                                <TextField label="Order datum" className ="TextField" value={this.state.date} onChange={ (e) => { this.setState({date: e.target.value}) }}/>
-                                <div style={{padding: "10px"}}> Status
-                                    <StatusCircle status={this.state.status} updateStatus={(id, status) => {this.setState({ status: status === "good" ? "normal" : status === "normal" ? "bad" : "good"})}} />
-                                </div>
-                                <div style={{padding: "10px"}}> Prioriterad
-                                    <Toggle defaultChecked={this.state.priority} onChange={(e, checked) => { this.setState({ priority: checked }) } } />
-                                </div>
-                                <PrimaryButton text="Skapa order" onClick = { () => { this.createOrder(); this.getOrders();}} style={{marginTop: "10px"}} />
+                                    <h2>Lägg till ny order</h2>
+                                    <TextField label="Order nummer" className ="TextField" value={this.state.orderNumber} onChange={(e) => {this.setState({ orderNumber: e.target.value}) }}/>
+                                    <TextField label="Order company" className ="TextField" value={this.state.company} onChange={ (e) => { this.setState({company: e.target.value}) }}/>
+                                    <TextField label="Order titel" className ="TextField" value={this.state.title} onChange={ (e) => { this.setState({ title: e.target.value}) }}/>
+                                    <TextField label="Order datum" className ="TextField" value={this.state.date} onChange={ (e) => { this.setState({date: e.target.value}) }}/>
+                                    <div style={{padding: "10px"}}> Status
+                                        <StatusCircle status={this.state.status} updateStatus={(id, status) => {this.setState({ status: switchOrderStatus(status)})}} />
+                                    </div>
+                                    <div style={{padding: "10px"}}> Prioriterad
+                                        <Toggle defaultChecked={this.state.priority} onChange={(e, checked) => { this.setState({ priority: checked }) } } />
+                                    </div>
+                                    <PrimaryButton text="Skapa order" onClick = { () => { this.createOrder()}} style={{marginTop: "10px"}} />
                                 </form>
                             </Modal>
                             )
@@ -138,11 +138,13 @@ export class EditOrder extends Component {
     }
 
     getOrders = () => {
+        //dunno why, it just doesn't work without
+        this.setState({orders: []})
         fetch("/orders")
         .then( res => res.json())
         .then( data => {
-            console.log(data)
             this.setState({orders: [...data.orders]})
+
         })
         .catch( error => {
             console.error("error fetching orders: ", error)
@@ -150,28 +152,29 @@ export class EditOrder extends Component {
     }
 
     createOrder = () => {
-        this.setState({ priority: this.state.priority === true ? 1 : 0})
 
         fetch('/orders', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
+                'Content-Type': 'application/json'
             },
-            body: "orderNumber=" + this.state.orderNumber + "&title=" + this.state.title + "&company=" + this.state.company +
-            "&date=" + this.state.date + "&status=" + this.state.status + "&columnId=" + this.state.columnId + "&priority=" + this.state.priority
+            body: JSON.stringify({
+                orderNumber: this.state.orderNumber,
+                title: this.state.title,
+                company: this.state.company,
+                date: this.state.date,
+                status: this.state.status,
+                columnId: this.state.columnId,
+                priority: this.state.priority
+            })
         })
-        .then(Response => Response.json())
-        .then(res =>    {
+        .then( Response => Response.json())
+        .then( res =>    {
             console.log(res)
-            this.setState({ showModul: false })
-            this.setState({ orderNumber: "" })
-            this.setState({ title: "" })
-            this.setState({ company: "" })
-            this.setState({ date: "" })
-            this.setState({ status: "normal" })
-            this.setState({ columnId: "" })
-            this.setState({ priority: "" })
-        }).catch(error =>   {
+            this.getOrders();
+            this.setState({ showModul: false, orderNumber:"", title:"", company:"", date:"", status:"normal", columnId:"", priority: false })
+      
+        }).catch( error => {
             console.log(error)
         })
     }

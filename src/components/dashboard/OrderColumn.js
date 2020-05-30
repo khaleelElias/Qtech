@@ -62,7 +62,7 @@ export class Order extends Component {
                     <ul>
                         {
                             this.state.orders.map( (order) => { 
-                                return ( <li style={{color:orderStatus[order.status]}}> {`${order.orderNumber} ${order.company} ${order.title} ${order.date}`} </li> )
+                                return ( <li style={{color:orderStatus[order.status]}}> {`${order.orderNumber} ${order.company} ${order.title} ${order.date} ${order.priority ? '*' : null}`} </li> )
                             })
                         } 
                     </ul>

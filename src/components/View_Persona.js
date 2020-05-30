@@ -3,7 +3,7 @@ import { Callout, IconButton } from 'office-ui-fabric-react';
 import { Dropdown } from 'office-ui-fabric-react/lib/Dropdown';
 import { Persona, PersonaSize, PersonaPresence } from 'office-ui-fabric-react/lib/Persona';
 import '../public/style.css'
-import {statusOptions} from '../constants/index'
+import {userStatusOptions} from '../constants/index'
 
 export class View_Persona extends Component {
     constructor(props) {
@@ -84,7 +84,7 @@ export class View_Persona extends Component {
                         <Dropdown className ="Dropdown"
                             label="Hur mår du idag?"
                             placeholder="Välj ett alternativ"
-                            options={statusOptions}
+                            options={userStatusOptions}
                             onChange={ ({}, item) => this.changeStatus(item, this.props.id) }
                         />
                         <IconButton iconProps={{iconName: "Delete"}} title="Delete" ariaLabel="Delete" onClick={ () => { this.deleteUser(this.props.id) }} />

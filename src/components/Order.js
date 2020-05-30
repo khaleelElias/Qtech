@@ -3,7 +3,7 @@ import "../public/style.css"
 import { Stack, initializeIcons, Toggle, Modal, StackItem } from 'office-ui-fabric-react';
 import { TextField, MaskedTextField } from 'office-ui-fabric-react/lib/TextField';
 import { PrimaryButton } from 'office-ui-fabric-react';
-import { statusOptions } from '../constants/index'
+import { userStatusOptions } from '../constants/index'
 import { Text, ITextProps } from 'office-ui-fabric-react/lib/Text';
 import { StatusCircle } from '../components/statusCircle'
 

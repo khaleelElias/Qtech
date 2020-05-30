@@ -7,7 +7,7 @@ import '../public/style.css'
 import { initializeIcons  } from 'office-ui-fabric-react';
 import { Modal } from 'office-ui-fabric-react';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
-import {statusOptions} from '../constants/index'
+import {userStatusOptions} from '../constants/index'
 
 export class Action_Menu extends Component {   
   constructor(props) {
@@ -89,7 +89,7 @@ export class Action_Menu extends Component {
                 label="Hur mår du idag?"
                 placeholder="Välj ett alternativ"
                 onChange={ ({}, item) => this.setState({status:item.key}) }
-                options={statusOptions}
+                options={userStatusOptions}
                 />
 
               <PrimaryButton text="Lägg till" onClick = { () => { this.createUser(this.state.username, this.state.status); this.props.reloadData();}} style={{marginTop: "10px"}} />

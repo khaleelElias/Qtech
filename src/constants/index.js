@@ -1,17 +1,24 @@
-const statusOptions = [
+//user index
+const userStatusOptions = [
     { key: 'good', text: 'God Balans'},
     { key: 'well', text:'Stressigt' },
     { key: 'bad', text: 'Mycket stressigt' },
     
 ]
 
+//order
 const orderStatus = {
     "good":"#0b852b",
     "normal":"#FFFF00",
     "bad":"#FF0000" 
 }
 
+//switch order status
+function switchOrderStatus(currentStatus) {
+    return currentStatus === "good" ? "normal" : currentStatus === "normal" ? "bad" : "good"
+}
 
+//week
 function getWeekNumber() {
     // Copy date so don't modify original
     let date = new Date();
@@ -27,7 +34,8 @@ function getWeekNumber() {
 }
 
 export {
-    statusOptions,
+    userStatusOptions,
     getWeekNumber,
-    orderStatus
+    orderStatus,
+    switchOrderStatus
 }
