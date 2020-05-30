@@ -80,26 +80,28 @@
    height: "100%";
 }
  .Dashboard_Columns{
-   margin: 1%;
-   background-color: lightgreen;
-   border: 1px solid gray;
-   border-radius: 5px;
-   border-block-start: 0.1rem solid #32a1ce;
-   border-block-end: 0.1rem solid #32a1ce;
+
+   border: 1px solid greenyellow;
+
+   /*den här cssn är till hela dashboard gränserna*/
+   
+   
+
  }
  .dashboardHeaders {
    text-align: center;
    border-radius: 5px;
    margin: 20px;
-   background-color: #32a1ce;
+   background-color: black;
  }
 .Dashboard_Titles{
-  border: 1px solid gray;
+
+  border: 1px solid red;
+  background-color: white;
   text-align: center;
   border-radius: 10px;
   margin: 20px;
   padding:8px;
-  background-color: #c6c6c6;
   
 }
 .Dashboard_Titles.css-54{
@@ -116,4 +118,19 @@
 
 .ms-Toggle-thumb.thumb-63 {
   
+  border: none;
+  
+}
+.Persona_In_Dropdown{
+
+  padding: 10px;
+  margin: 10px;
+}
+.Actevity_Text{
+
+  padding: 10px;
+  max-width: 200px;
+  align-items: center;
+  text-align: center;
+  overflow-wrap: break-word;
 }

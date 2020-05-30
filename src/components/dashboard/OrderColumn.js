@@ -1,29 +1,41 @@
 import React, { Component } from 'react'
 import { Persona, PersonaSize,  Text, divProperties, Stack, DefaultButton, personaSize, StackItem } from 'office-ui-fabric-react'
+import { mergeStyles, mergeStyleSets } from 'office-ui-fabric-react/lib/Styling';
+import { FontIcon } from 'office-ui-fabric-react/lib/Icon';
+import { orderStatus } from '../../constants/index'
 
+
+
+
+const iconClass = mergeStyles({
+    fontSize: 40,
+    height: 40,
+    width: 40,
+    margin: '0 25px',
+  });
+  const classNames = mergeStyleSets({
+    deepSkyBlue: [{ color: 'gray' }, iconClass],
+    greenYellow: [{ color: 'greenyellow' }, iconClass],
+    salmon: [{ color: 'salmon' }, iconClass],
+  });
 
 export class Order extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            ordersData: []
+            orders: []
         }
 
         this.getOrders()
     }
 
     getOrders = () => {
-        fetch("/orders", {
-            method:'GET',
-            headers:{
-                "Content-Type": "application/json"
-            }
-        })
-        .then( res => { console.log(res.status); return res.json()})
+        fetch("/orders?priority=1")
+        .then( res => res.json())
         .then( data => {
-            console.log(data)
-            this.setState({ordersData: [...data.orders]})
+            console.log("fetching orders to column: ", data)
+            this.setState({orders: [...data.orders]})
         })
         .catch( error => {
             console.error("error fetching orders: ", error)
@@ -39,24 +51,21 @@ export class Order extends Component {
         
         return (
             <div>
-                
                 <Stack >
-                    <Stack horizontal className = "Dashboard_Titles">
+                    <Stack horizontal  gap = {8} className = "Dashboard_Titles">
+                        <FontIcon className={classNames.deepSkyBlue}  iconName="ReservationOrders"/>
                         <DefaultButton   text="ORDER/INKÖP" onClick={() => {this.redirectFunc()}} />
                         <Persona size={PersonaSize.size40}/>
-                    </Stack>
-                    <Text style = {{textAlign: "center", fontFamily: "Times"}}>Här kan ni se alla våra sneakers som vi har inne i butiken. Sneakers-modeller från Nike Air Max 90, Nike Air Force 1, Nike Air Max 270, Nike VaporMax, adidas Superstar, adidas Stan Smith, adidas Continental 80, FILA Disruptor, Converse All Star, Reebok Classic Leather</Text>
-                   
-                
+                    </Stack>                
                 </Stack>
-                <Stack>
-                    { this.state.ordersData.map( (order) => 
-                        { 
-                            return (order.company + order.title + order.date)
-                        }
-                        )
-                    } 
-                </Stack>  
+                
+                    <ul>
+                        {
+                            this.state.orders.map( (order) => { 
+                                return ( <li style={{color:orderStatus[order.status]}}> {`${order.orderNumber} ${order.company} ${order.title} ${order.date}`} </li> )
+                            })
+                        } 
+                    </ul>
             </div>
         )
     }

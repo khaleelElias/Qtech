@@ -66,7 +66,6 @@ export class Action_Menu extends Component {
   }
 
   render() {
-    if(!this.state.showModul)
       return (
           <div>
             <CommandBarButton 

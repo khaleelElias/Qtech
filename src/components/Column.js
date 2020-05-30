@@ -60,4 +60,6 @@ export class Column extends React.Component{
             console.log(error)
         })
     }
+
+    
 }

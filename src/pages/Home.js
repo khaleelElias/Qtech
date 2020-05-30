@@ -24,16 +24,16 @@ export class Home extends React.Component{
 
     render() {
         return(
-            <div>
-                <header className="header">
+            <div className="header">
+                <header >
                     <a href="https://qtechgroup.sharepoint.com/SitePages/Intranet.aspx">
                         <img className = "img" src={qtechgroup}  alt=''/>
                     </a>
                     <Navbar history={this.props.history} loadData={this.loadData.bind(this)}/>
-                    <UserBar users={this.state.users} />
+                    <UserBar users={this.state.users} loadData={this.loadData.bind(this)}/>
                 </header>
               
-                <Dashboard history={this.props.history}/>
+                <Dashboard history={this.props.history} loadData={this.loadData.bind(this)}/>
                 </div>
         );
     }
