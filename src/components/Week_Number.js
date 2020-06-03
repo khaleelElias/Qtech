@@ -6,11 +6,12 @@ import { Stack } from 'office-ui-fabric-react'
 import { FontIcon } from 'office-ui-fabric-react/lib/Icon';
 
 const iconClass = mergeStyles({
-    fontSize: 40,
-    height: 40,
-    width: 40,
+    fontSize: 30,
+    height: 30,
+    width: 30,
     marginLeft: '15px',
-    marginRight: '10px'
+    marginRight: '10px',
+    color: "black"
   });
   
 
@@ -26,7 +27,10 @@ export class Week_Number extends Component {
         return (
             <Stack horizontal>
                 <Stack.Item align="center">
-                    <FontIcon iconName="Calendar" className={iconClass} />
+                    
+                    
+                    <FontIcon iconName="Calendar" className={iconClass}/>
+                    
                     
                     
 

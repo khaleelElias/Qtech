@@ -8,13 +8,13 @@ export class UserBar extends React.Component{
     render() {
         return(
             <div className = "header ">
-                <Stack horizontal>
+                <Stack horizontal wrap>
                     <Stack>
-                        <Stack horizontal>
+                        <Stack horizontal wrap>
                             {
-                                this.props.users.slice(0, 30).map( (value, index) => {
+                                this.props.users.slice(0, 40).map( (value, index) => {
                                     return (
-                                       <View_Persona name={value.username} status={value.status} id={value.id} index={index} loadData={this.props.loadData} type="0" hidePersonaDetails={true} />
+                                       <View_Persona idOfPersona={"personaCollege"+index} name={value.username} status={value.status} id={value.id} index={index} loadData={this.props.loadData} type="0" hidePersonaDetails={true} />
                                     )
                                 })
                             }

@@ -3,14 +3,11 @@ import { Navbar } from '../components/Navbar'
 import "../public/style.css"
 import  qtechgroup from '../public/qtechgroup.png'
 import { Stack, initializeIcons, Toggle, Modal, StackItem, DetailsList, SelectionMode } from 'office-ui-fabric-react';
-import { TextField, MaskedTextField } from 'office-ui-fabric-react/lib/TextField';
+import { TextField} from 'office-ui-fabric-react/lib/TextField';
 import { PrimaryButton } from 'office-ui-fabric-react';
-import { Dropdown } from 'office-ui-fabric-react/lib/Dropdown';
-import { userStatusOptions } from '../constants/index'
-import { Text, ITextProps } from 'office-ui-fabric-react/lib/Text';
-import { Order } from "../components/Order.js"
+import { Text } from 'office-ui-fabric-react/lib/Text';
 import { StatusCircle } from '../components/statusCircle'
-import { switchOrderStatus } from '../constants/index'
+import { switchStatus } from '../constants/index'
 
 export class EditOrder extends Component {
     
@@ -63,6 +60,15 @@ export class EditOrder extends Component {
             maxWidth: 200, 
             isResizable: true,
             onRender: (item) => { return <StatusCircle status={item.status} id={item.id} updateStatus={this.updateStatus.bind(this)} />}
+        },
+        {
+            key: 'deleteOrder',
+            name: 'Radera',
+            fieldName: 'Radera',
+            minWidth: 100, 
+            maxWidth: 200, 
+            isResizable: true,
+            onRender: (item) => {return <PrimaryButton text="Radera" onClick = { () => { this.deleteOrder(item.id) }} style={{marginTop: "10px"}} />        }
         }
     ];
 
@@ -71,6 +77,7 @@ export class EditOrder extends Component {
         initializeIcons()
 
         this.state = {
+            users: [],
             orders: [],
             showModul: false,
             orderNumber: "",
@@ -82,6 +89,7 @@ export class EditOrder extends Component {
             priority: false,
         }
 
+        this.loadUsers()
         this.getOrders()
     }
 
@@ -89,11 +97,11 @@ export class EditOrder extends Component {
     render() {
         console.log("render?")
         return (
-            <div>
+            <div className = "header">
                 <a href="https://qtechgroup.sharepoint.com/SitePages/Intranet.aspx">
                     <img className = "img" src={qtechgroup}  alt=''/>
                 </a>
-                <Navbar />
+                <Navbar users={this.state.users} />
                 <StackItem className = "Dashboard_Titles">
                     <Text variant={'xxLarge'}>  ORDER/INKÖP</Text>
                 </StackItem>
@@ -121,7 +129,7 @@ export class EditOrder extends Component {
                                     <TextField label="Order titel" className ="TextField" value={this.state.title} onChange={ (e) => { this.setState({ title: e.target.value}) }}/>
                                     <TextField label="Order datum" className ="TextField" value={this.state.date} onChange={ (e) => { this.setState({date: e.target.value}) }}/>
                                     <div style={{padding: "10px"}}> Status
-                                        <StatusCircle status={this.state.status} updateStatus={(id, status) => {this.setState({ status: switchOrderStatus(status)})}} />
+                                        <StatusCircle status={this.state.status} updateStatus={(id, status) => {this.setState({ status: switchStatus(status)})}} />
                                     </div>
                                     <div style={{padding: "10px"}}> Prioriterad
                                         <Toggle defaultChecked={this.state.priority} onChange={(e, checked) => { this.setState({ priority: checked }) } } />
@@ -137,8 +145,23 @@ export class EditOrder extends Component {
         )
     }
 
+    loadUsers = () => {
+        fetch('/users')
+        .then(Response => Response.json())
+        .then(res => {
+            console.log(res)
+            this.setState({users: [...res.users]})
+        }).catch( error => {
+            console.log("error: ", error)
+        })
+    }
+
     getOrders = () => {
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> a0284d567e02e25448fda130305ece5ac154e898
         fetch("/orders")
         .then( res => res.json())
         .then( data => {
@@ -205,6 +228,23 @@ export class EditOrder extends Component {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             body: "status=" + status + "&id=" + id
+        })
+        .then(Response => Response.json())
+        .then(res =>    {
+            console.log(res)
+            this.getOrders()
+        }).catch(error =>   {
+            console.log(error)
+        })
+    }
+    deleteOrder = (id) => {
+
+        fetch('/orders', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: "id=" + id
         })
         .then(Response => Response.json())
         .then(res =>    {
