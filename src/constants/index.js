@@ -7,15 +7,20 @@ const userStatusOptions = [
 ]
 
 //order
-const orderStatus = {
+const statusOfField = {
     "good":"#0b852b",
-    "normal":"#FFFF00",
-    "bad":"#FF0000" 
+    "normal":"#E67E22",
+    "bad":"#FF0000"
 }
 
 //switch order status
-function switchOrderStatus(currentStatus) {
+function switchStatus(currentStatus) {
     return currentStatus === "good" ? "normal" : currentStatus === "normal" ? "bad" : "good"
+}
+
+//switch order status
+function switchStatusColor(currentStatus) {
+    return currentStatus === "good" ? "#0b852b" : currentStatus === "normal" ? "#FFFF00" : "#FF0000"
 }
 
 //week
@@ -36,6 +41,7 @@ function getWeekNumber() {
 export {
     userStatusOptions,
     getWeekNumber,
-    orderStatus,
-    switchOrderStatus
+    statusOfField,
+    switchStatus,
+    switchStatusColor
 }

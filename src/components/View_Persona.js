@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Callout, IconButton } from 'office-ui-fabric-react';
+import { Callout, IconButton, Text } from 'office-ui-fabric-react';
 import { Dropdown } from 'office-ui-fabric-react/lib/Dropdown';
 import { Persona, PersonaSize, PersonaPresence } from 'office-ui-fabric-react/lib/Persona';
 import '../public/style.css'
@@ -12,8 +12,9 @@ export class View_Persona extends Component {
         this.state = {
             isShown: false,
         }
-    }
 
+        console.log("is this called")
+    }
 
     changeStatus = (status, id) => {
         fetch('/users/status', {
@@ -61,13 +62,14 @@ export class View_Persona extends Component {
     }
 
     render() {
-        
+        console.log("id: ", this.props.idOfPersona)
         return (
             <div>
                 <div className = "header">                              
                     <div className = "persona">
                         <Persona
                             text={this.props.name}
+                            id={this.props.idOfPersona}
                             key={"keyOfPersona: " + this.props.index}
                             size={PersonaSize.size32}
                             hidePersonaDetails={this.props.hidePersonaDetails}
@@ -80,9 +82,12 @@ export class View_Persona extends Component {
                 {
                     this.state.isShown && (
                     <Callout
-                    onDismiss={ () => this.setState({isShown: false})} >
+                        onDismiss={ () => this.setState({isShown: false})} 
+                        target={`#${this.props.idOfPersona}`}
+                    >
+                        
                         <Dropdown className ="Dropdown"
-                            label="Hur mår du idag?"
+                            label={`Hur mår du idag ${this.props.name}?`}
                             placeholder="Välj ett alternativ"
                             options={userStatusOptions}
                             onChange={ ({}, item) => this.changeStatus(item, this.props.id) }

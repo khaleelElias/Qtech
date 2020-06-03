@@ -15,7 +15,7 @@ export class Dashboard extends Component {
                     </StackItem>
 
                     <StackItem grow={1} verticalFill className = "Dashboard_Columns">
-                        <Project/>
+                        <Project history={this.props.history}/>
                     </StackItem>
                     
                     <StackItem grow={1} verticalFill className = "Dashboard_Columns">

@@ -1,5 +1,10 @@
+
 .header{
-  background-color:#c6c6c6;
+  background-color: #EAEDED ;
+ background-repeat: no-repeat;
+  /*background-image: url(./backGround.png);
+  background-attachment: fixed;
+  background-size: cover;*/
 }
   
   /* Create two equal columns that floats next to each other */
@@ -73,15 +78,15 @@
   padding: 12px;
  }
  .Navbar{
-  background-color:#c6c6c6 ;
+  
  }
 
  .dashboardHeight {
-   height: "100%";
+ 
 }
  .Dashboard_Columns{
 
-   border: 1px solid greenyellow;
+   border: 1px solid #D0D3D4;
 
    /*den här cssn är till hela dashboard gränserna*/
    
@@ -92,12 +97,12 @@
    text-align: center;
    border-radius: 5px;
    margin: 20px;
-   background-color: black;
+   
  }
 .Dashboard_Titles{
 
-  border: 1px solid red;
-  background-color: white;
+  border: 1px solid #EDB5BF;
+  background-color: #90ccf4;
   text-align: center;
   border-radius: 10px;
   margin: 20px;
@@ -126,6 +131,9 @@
   padding: 10px;
   margin: 10px;
 }
+.persona{
+  padding:10px
+}
 .Actevity_Text{
 
   padding: 10px;
@@ -134,3 +142,4 @@
   text-align: center;
   overflow-wrap: break-word;
 }
+

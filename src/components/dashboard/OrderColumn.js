@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import { Persona, PersonaSize,  Text, divProperties, Stack, DefaultButton, personaSize, StackItem } from 'office-ui-fabric-react'
 import { mergeStyles, mergeStyleSets } from 'office-ui-fabric-react/lib/Styling';
 import { FontIcon } from 'office-ui-fabric-react/lib/Icon';
-import { orderStatus } from '../../constants/index'
+import { statusOfField, switchStatusColor } from '../../constants/index'
+import { initializeIcons  } from 'office-ui-fabric-react';       
+
 
 
 
@@ -12,6 +14,7 @@ const iconClass = mergeStyles({
     height: 40,
     width: 40,
     margin: '0 25px',
+    color: "#27AE60"
   });
   const classNames = mergeStyleSets({
     deepSkyBlue: [{ color: 'gray' }, iconClass],
@@ -26,8 +29,10 @@ export class Order extends Component {
         this.state = {
             orders: []
         }
+        console.log("Order is run?")
 
         this.getOrders()
+        initializeIcons()
     }
 
     getOrders = () => {
@@ -44,7 +49,7 @@ export class Order extends Component {
 
     redirectFunc = () =>  {
         this.props.history.push('/EditOrder')
-      }
+    }
 
 
     render() {
@@ -59,10 +64,30 @@ export class Order extends Component {
                     </Stack>                
                 </Stack>
                 
-                    <ul>
+                    <ul >
                         {
                             this.state.orders.map( (order) => { 
-                                return ( <li style={{color:orderStatus[order.status]}}> {`${order.orderNumber} ${order.company} ${order.title} ${order.date} ${order.priority ? '*' : null}`} </li> )
+                                return (
+                                   <Stack horizontal className='ulForOrder' gap={10} style = {{margin:10}}>
+                                       <Stack.Item align="center">
+                                       <FontIcon 
+                                            iconName={"LocationDot"}
+                                            style={{color: statusOfField[order.status]}}
+                                       />
+                                       </Stack.Item>
+                                       <Stack.Item align="center">
+                                       <Text> {`${order.orderNumber} ${order.company} ${order.title} ${order.date}`} </Text>
+                                       </Stack.Item>
+                                       <Stack.Item align="center">
+                                       { order.priority ? (
+                                            <FontIcon
+                                                iconName={"FavoriteStarFill"}
+                                                style={{color: "yellow"}} 
+                                            />
+                                       ) : null}
+                                       </Stack.Item>
+                                   </Stack>
+                                )
                             })
                         } 
                     </ul>
@@ -70,3 +95,10 @@ export class Order extends Component {
         )
     }
 }
+
+/*
+ <div style={{color: statusOfField[order.status], paddingBlockEnd:'10px'}}> 
+                                        <span style={{borderRadius:'50%', backgroundColor:'black', width:5, height:5, display:'inline-block'}}/>
+                                            {`${order.orderNumber} ${order.company} ${order.title} ${order.date} ${order.priority ? '*' : null}`}
+                                    </div> 
+*/
