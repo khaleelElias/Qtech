@@ -50,7 +50,7 @@ export class Order extends Component {
     render() {
         
         return (
-            <div>
+            <div >
                 <Stack >
                     <Stack horizontal  gap = {8} className = "Dashboard_Titles">
                         <FontIcon className={classNames.deepSkyBlue}  iconName="ReservationOrders"/>
@@ -59,10 +59,10 @@ export class Order extends Component {
                     </Stack>                
                 </Stack>
                 
-                    <ul>
+                    <ul className ="styleOrderColumn">
                         {
                             this.state.orders.map( (order) => { 
-                                return ( <li style={{color:orderStatus[order.status]}}> {`${order.orderNumber} ${order.company} ${order.title} ${order.date} ${order.priority ? '*' : null}`} </li> )
+                                return ( <li className="orderfahed" style={{color:orderStatus[order.status]}}> {`${order.orderNumber} ${order.company} ${order.title} ${order.date} ${order.priority ? '*' : null}`} </li> )
                             })
                         } 
                     </ul>

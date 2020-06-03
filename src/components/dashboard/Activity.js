@@ -44,11 +44,12 @@ export class Activity extends Component {
                             return (
                                 <div>
                                     <Stack>
-                                        <Stack horizontal  gap={8} className = "Dashboard_Titles">
+                                        <Stack horizontal  gap={8} className = "Dashboard_Titles{">
                                             <DefaultButton   text={column.title} onClick={() => {this.redirectFunc()}} />
                                             <PersonaDropdown id={"dinpap"} loadData={this.props.loadData} columnId={column.id} supervisorId={column.supervisor}/>
                                         </Stack>
                                         <Text className= "Actevity_Text">{column.message}</Text>
+                                        
                                     </Stack>
                                     
                                 </div>

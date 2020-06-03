@@ -10,7 +10,7 @@ const userStatusOptions = [
 const orderStatus = {
     "good":"#0b852b",
     "normal":"#FFFF00",
-    "bad":"#FF0000" 
+    "bad":"#FF0000"
 }
 
 //switch order status

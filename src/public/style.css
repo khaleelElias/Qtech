@@ -1,5 +1,5 @@
 .header{
-  background-color:#c6c6c6;
+  background-color:#ececec;
 }
   
   /* Create two equal columns that floats next to each other */
@@ -53,8 +53,7 @@
     border-radius: 5px;
     text-align: left;
     margin-left: 5px;
-    border-block-start: 0.5rem solid #32a1ce;
-    border-block-end: 0.5rem solid #32a1ce;
+   
   }
 
   hr{
@@ -73,37 +72,36 @@
   padding: 12px;
  }
  .Navbar{
-  background-color:#c6c6c6 ;
+  background-color: #f78888;
  }
 
  .dashboardHeight {
    height: "100%";
 }
  .Dashboard_Columns{
-
-   border: 1px solid greenyellow;
+   background-color: #ececec;
+   border: 1px solid ;
 
    /*den här cssn är till hela dashboard gränserna*/
-   
-   
-
- }
+  }
  .dashboardHeaders {
    text-align: center;
    border-radius: 5px;
    margin: 20px;
-   background-color: black;
+   background-color:black;
+
  }
 .Dashboard_Titles{
-
-  border: 1px solid red;
-  background-color: white;
+  border: 1px solid   #5da2d5 ;
+  background-color:#5da2d5;
   text-align: center;
   border-radius: 10px;
   margin: 20px;
   padding:8px;
   
 }
+
+
 .Dashboard_Titles.css-54{
   width: fit-content;
   align-self: center;
@@ -112,17 +110,12 @@
 .ms-Button{
   width: fit-content;
   align-self: center;
+  background-color:#ececec ;
 }
-
-
-
 .ms-Toggle-thumb.thumb-63 {
-  
-  border: none;
-  
+  border: none; 
 }
 .Persona_In_Dropdown{
-
   padding: 10px;
   margin: 10px;
 }
@@ -134,3 +127,10 @@
   text-align: center;
   overflow-wrap: break-word;
 }
+.styleOrderColumn{
+   
+  
+  }
+  .orderfahed{
+    margin: 10px;
+  }
