@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { FontIcon } from 'office-ui-fabric-react/lib/Icon';
-import { Persona, PersonaSize, Stack, DefaultButton } from 'office-ui-fabric-react'
+import { Persona, PersonaSize, Stack, DefaultButton, Check, StackItem } from 'office-ui-fabric-react'
 import { mergeStyles, mergeStyleSets } from 'office-ui-fabric-react/lib/Styling';
 import { statusOfField } from '../../constants';
-
-
+import { initializeIcons  } from 'office-ui-fabric-react';       
+import { StatusCircle } from '../statusCircle'
+import { switchStatus } from '../../constants/index'
 
 
 const iconClass = mergeStyles({
@@ -26,12 +27,46 @@ export class Project extends Component {
         super(props)
 
         this.state = {
-            projects: []
-
+            projects: [],
+            checks: []
         }
 
         this.getProjects()
+        this.getChecks()
+        initializeIcons()
     }
+
+    getChecks = () => {
+        fetch("/checks?columnId=1")
+        .then( res => res.json())
+        .then( data => {
+            console.log("fetching checks to column: ", data)
+            this.setState({checks: [...data.checks]})
+        })
+        .catch( error => {
+            console.error("error fetching checks: ", error)
+        })
+    }
+
+    updateStatus = (id, status) => {
+        status = status === "good" ? "normal" : status === "normal" ? "bad" : "good"
+
+        fetch('/checks/status', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: "status=" + status + "&id=" + id
+        })
+        .then(Response => Response.json())
+        .then(res =>    {
+            console.log(res)
+            this.getChecks()
+        }).catch(error =>   {
+            console.log(error)
+        })
+    }
+
 
     getProjects = () => {
         fetch("/projects?priority=1")
@@ -54,19 +89,43 @@ export class Project extends Component {
     render() {
         return (
             <Stack>
-                 <Stack>
-                    <Stack Stack horizontal  gap = {8} className = "Dashboard_Titles">
+                
+                 <Stack  style= {{width:"fit-content"}} >
+                    <Stack Stack horizontal   className = "Dashboard_Titles">
                         <FontIcon className={classNames.deepSkyBlue}  iconName="TextDocumentShared"/>
                         <DefaultButton  text="Projekt" onClick={() => {this.redirectFunc()}} />
                         <Persona size={PersonaSize.size40}/>
                     </Stack>
-                    <ul style={{alignSelf:'center'}}>
+                    <Stack  className = "Dashboard_Titles">
+                    {
+                        this.state.checks.map((check) =>{
+                            return(
+                                <Stack horizontal style={{padding:"1px"}}>
+                                    {check.title}
+                                    <StatusCircle status={check.status} id={check.id} updateStatus={this.updateStatus.bind(this)} />
+                                </Stack>
+                            )
+                        })
+                    }
+                    
+                    </Stack>
+                    <Stack>
+                    <ul>
                         {
                             this.state.projects.map( (project) => { 
-                                return ( <li style={{color:statusOfField[project.status]}}> {`${project.projectNumber} ${project.company} ${project.date} ${project.message} ${project.priority ? '*' : null}`} </li> )
+                                return ( <li style={{borderLeft:`5px solid ${statusOfField[project.status]}`}}> 
+                                        <a> {`${project.projectNumber} ${project.company} ${project.date} ${project.message}`}
+                                        { project.priority ? (
+                                                <FontIcon
+                                                    iconName={"FavoriteStarFill"}
+                                                    style={{color: "yellow"}} 
+                                                />
+                                        ) : null} </a>
+                                    </li> )
                             })
                         }
                     </ul>
+                    </Stack>
                 </Stack>
             </Stack>
         )
