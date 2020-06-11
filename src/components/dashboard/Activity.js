@@ -7,18 +7,14 @@ import { PersonaDropdown } from '../PersonaDropdown'
 export class Activity extends Component {
     constructor(props) {
         super(props)
-
         this.state = {
             columns:[]
         }
-
         this.fetchColumns()
     }   
-
     IActivityStyleProps = {
         borderBlockEnd:" 1px solid red", 
-        padding:10
-        
+        padding:10   
     }
 
     fetchColumns = () => {
@@ -36,33 +32,39 @@ export class Activity extends Component {
     render() {
         return (
             <Stack>
-                <Stack horizontal  gap={8} className = "Dashboard_Titles">
-                    <DefaultButton   text={"Activities"} onClick={() => {this.redirectFunc()}} />
-                </Stack>
-                    {
-                        this.state.columns.map( (column) => {
-                            return (
-                                <div>
-                                    <Stack>
-                                        <Stack horizontal  gap={8} className = "Dashboard_Titles{">
-                                            <DefaultButton   text={column.title} onClick={() => {this.redirectFunc()}} />
-                                            <PersonaDropdown id={"dinpap"} loadData={this.props.loadData} columnId={column.id} supervisorId={column.supervisor}/>
-                                        </Stack>
-                                        <Text className= "Actevity_Text">{column.message}</Text>
+                
+                    <Stack horizontal  gap={8} className = "Dashboard_Titles">
+                        <DefaultButton   text={"Activities"} onClick={() => {this.redirectFunc()}} />
+                        <Persona size={PersonaSize.size40}/>
+             
+
+                        {   
+                            this.state.columns.map( (column) => {
+                                return (
+                                    <div>
+                                        <Stack>
+                                            <Stack horizontal  gap={8} className = "Dashboard_Titles{">
+                                                <DefaultButton   text={column.title} onClick={() => {this.redirectFunc()}} />
+                                                <PersonaDropdown id={"dinpap"} loadData={this.props.loadData} columnId={column.id} supervisorId={column.supervisor}/>     
+                                           
+                                            </Stack>
+
+                                             <Text className= "Actevity_Text">{column.message} hej</Text>   
                                         
-                                    </Stack>
+                                        </Stack>
                                     
-                                </div>
-                            )
-                        })
-                    }
+                                    </div>
+                                )
+                            })
+                        }
+                
+                
+                    </Stack>    
+                    
+                    
             </Stack>
         )
     }
-
-    
-
-
 
     
 }

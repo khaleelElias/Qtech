@@ -64,12 +64,6 @@ export class Order extends Component {
                     </Stack>                
                 </Stack>
                 
-<<<<<<< HEAD
-                    <ul className ="styleOrderColumn">
-                        {
-                            this.state.orders.map( (order) => { 
-                                return ( <li className="orderfahed" style={{color:orderStatus[order.status]}}> {`${order.orderNumber} ${order.company} ${order.title} ${order.date} ${order.priority ? '*' : null}`} </li> )
-=======
                     <ul >
                         {
                             this.state.orders.map( (order) => { 
@@ -94,7 +88,6 @@ export class Order extends Component {
                                        </Stack.Item>
                                    </Stack>
                                 )
->>>>>>> a0284d567e02e25448fda130305ece5ac154e898
                             })
                         } 
                     </ul>

@@ -1,14 +1,10 @@
 
 .header{
-<<<<<<< HEAD
-  background-color:#ececec;
-=======
   background-color: #EAEDED ;
  background-repeat: no-repeat;
   /*background-image: url(./backGround.png);
   background-attachment: fixed;
   background-size: cover;*/
->>>>>>> a0284d567e02e25448fda130305ece5ac154e898
 }
   
   /* Create two equal columns that floats next to each other */
@@ -81,24 +77,15 @@
   padding: 12px;
  }
  .Navbar{
-<<<<<<< HEAD
   background-color: #f78888;
-=======
-  
->>>>>>> a0284d567e02e25448fda130305ece5ac154e898
  }
 
  .dashboardHeight {
  
 }
  .Dashboard_Columns{
-<<<<<<< HEAD
    background-color: #ececec;
    border: 1px solid ;
-=======
-
-   border: 1px solid #D0D3D4;
->>>>>>> a0284d567e02e25448fda130305ece5ac154e898
 
    /*den här cssn är till hela dashboard gränserna*/
   }
@@ -106,26 +93,16 @@
    text-align: center;
    border-radius: 5px;
    margin: 20px;
-<<<<<<< HEAD
    background-color:black;
 
  }
 .Dashboard_Titles{
   border: 1px solid   #5da2d5 ;
   background-color:#5da2d5;
-=======
-   
- }
-.Dashboard_Titles{
-
-  border: 1px solid #EDB5BF;
-  background-color: #90ccf4;
->>>>>>> a0284d567e02e25448fda130305ece5ac154e898
   text-align: center;
   border-radius: 10px;
   margin: 20px;
   padding:8px;
-  
 }
 
 
@@ -157,7 +134,6 @@
   text-align: center;
   overflow-wrap: break-word;
 }
-<<<<<<< HEAD
 .styleOrderColumn{
    
   
@@ -165,6 +141,3 @@
   .orderfahed{
     margin: 10px;
   }
-=======
-
->>>>>>> a0284d567e02e25448fda130305ece5ac154e898

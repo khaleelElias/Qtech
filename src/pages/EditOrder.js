@@ -157,11 +157,6 @@ export class EditOrder extends Component {
     }
 
     getOrders = () => {
-<<<<<<< HEAD
-        
-=======
-
->>>>>>> a0284d567e02e25448fda130305ece5ac154e898
         fetch("/orders")
         .then( res => res.json())
         .then( data => {

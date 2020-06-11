@@ -9,11 +9,7 @@ const userStatusOptions = [
 //order
 const statusOfField = {
     "good":"#0b852b",
-<<<<<<< HEAD
-    "normal":"#FFFF00",
-=======
     "normal":"#E67E22",
->>>>>>> a0284d567e02e25448fda130305ece5ac154e898
     "bad":"#FF0000"
 }
 
