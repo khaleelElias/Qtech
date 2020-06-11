@@ -25,11 +25,10 @@ export class Home extends React.Component{
         return(
             <div className="header">
                 <header >
-                    
                     <Navbar history={this.props.history} loadData={this.loadData.bind(this)} users={this.state.users} />
                 </header>
                 <Dashboard history={this.props.history} loadData={this.loadData.bind(this)}/>
-                </div>
+            </div>
         );
     }
 

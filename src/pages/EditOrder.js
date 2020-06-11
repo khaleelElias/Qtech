@@ -41,7 +41,8 @@ export class EditOrder extends Component {
             name: 'title', 
             fieldName: 'title', 
             minWidth: 100, 
-            maxWidth: 200, 
+            maxWidth: 200,
+            height:200,
             isResizable: true
         },
         {
@@ -98,9 +99,6 @@ export class EditOrder extends Component {
         console.log("render?")
         return (
             <div className = "header">
-                <a href="https://qtechgroup.sharepoint.com/SitePages/Intranet.aspx">
-                    <img className = "img" src={qtechgroup}  alt=''/>
-                </a>
                 <Navbar users={this.state.users} />
                 <StackItem className = "Dashboard_Titles">
                     <Text variant={'xxLarge'}>  ORDER/INKÖP</Text>
@@ -126,7 +124,7 @@ export class EditOrder extends Component {
                                     <h2>Lägg till ny order</h2>
                                     <TextField label="Order nummer" className ="TextField" value={this.state.orderNumber} onChange={(e) => {this.setState({ orderNumber: e.target.value}) }}/>
                                     <TextField label="Order company" className ="TextField" value={this.state.company} onChange={ (e) => { this.setState({company: e.target.value}) }}/>
-                                    <TextField label="Order titel" className ="TextField" value={this.state.title} onChange={ (e) => { this.setState({ title: e.target.value}) }}/>
+                                    <textarea label="Order titel" className ="TextField" value={this.state.title} onChange={ (e) => { this.setState({ title: e.target.value}) }}/>
                                     <TextField label="Order datum" className ="TextField" value={this.state.date} onChange={ (e) => { this.setState({date: e.target.value}) }}/>
                                     <div style={{padding: "10px"}}> Status
                                         <StatusCircle status={this.state.status} updateStatus={(id, status) => {this.setState({ status: switchStatus(status)})}} />

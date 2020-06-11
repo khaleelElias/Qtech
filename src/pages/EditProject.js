@@ -97,9 +97,6 @@ export class EditProject extends Component {
         console.log("render?")
         return (
             <div className= "header">
-                <a href="https://qtechgroup.sharepoint.com/SitePages/Intranet.aspx">
-                    <img className = "img" src={qtechgroup}  alt=''/>
-                </a>
                 <Navbar users={this.state.users} />
                 <StackItem className = "Dashboard_Titles">
                     <Text  variant={'xxLarge'}>  Project</Text>
@@ -125,7 +122,7 @@ export class EditProject extends Component {
                                     <h2>Lägg till ny project</h2>
                                     <TextField label="Project nummer" className ="TextField" value={this.state.projectNumber} onChange={(e) => {this.setState({ projectNumber: e.target.value}) }}/>
                                     <TextField label="Project company" className ="TextField" value={this.state.company} onChange={ (e) => { this.setState({company: e.target.value}) }}/>
-                                    <TextField label="Project message" className ="TextField" value={this.state.title} onChange={ (e) => { this.setState({ message: e.target.value}) }}/>
+                                    <TextField label="Project message" className ="TextField" value={this.state.message} onChange={ (e) => { this.setState({ message: e.target.value}) }}/>
                                     <TextField label="Project datum" className ="TextField" value={this.state.date} onChange={ (e) => { this.setState({date: e.target.value}) }}/>
                                     <div style={{padding: "10px"}}> Status
                                         <StatusCircle status={this.state.status} updateStatus={(id, status) => { this.setState({ status: switchStatus(status)})}} />
@@ -177,7 +174,6 @@ export class EditProject extends Component {
             },
             body: JSON.stringify({
                 projectNumber: this.state.projectNumber,
-                title: this.state.title,
                 company: this.state.company,
                 date: this.state.date,
                 status: this.state.status,
@@ -189,7 +185,7 @@ export class EditProject extends Component {
         .then( res =>    {
             console.log(res)
             this.getProjects();
-            this.setState({ showModul: false, projectNumber:"", title:"", company:"", date:"", status:"normal", columnId:"", priority: false })
+            this.setState({ showModul: false, projectNumber:"", message: "", company:"", date:"", status:"normal", columnId:"", priority: false })
       
         }).catch( error => {
             console.log(error)
