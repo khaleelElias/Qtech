@@ -63,34 +63,26 @@ export class Order extends Component {
                         <Persona size={PersonaSize.size40}/>
                     </Stack>                
                 </Stack>
-                
-                    <ul >
+                <Stack>
+                <ul  style={{alignSelf:'center', listStyleType:"none"}}>
                         {
                             this.state.orders.map( (order) => { 
-                                return (
-                                   <Stack horizontal className='ulForOrder' gap={10} style = {{margin:10}}>
-                                       <Stack.Item align="center">
-                                       <FontIcon 
-                                            iconName={"LocationDot"}
-                                            style={{color: statusOfField[order.status]}}
-                                       />
-                                       </Stack.Item>
-                                       <Stack.Item align="center">
-                                       <Text> {`${order.orderNumber} ${order.company} ${order.title} ${order.date}`} </Text>
-                                       </Stack.Item>
-                                       <Stack.Item align="center">
-                                       { order.priority ? (
-                                            <FontIcon
-                                                iconName={"FavoriteStarFill"}
-                                                style={{color: "yellow"}} 
-                                            />
-                                       ) : null}
-                                       </Stack.Item>
-                                   </Stack>
-                                )
+                                return ( <li style={{borderLeft:`5px solid ${statusOfField[order.status]}`}}> 
+                                        <a> {`${order.orderNumber} ${order.company} ${order.date} ${order.message} `}
+                                        { order.priority ? (
+                                                <FontIcon
+                                                    iconName={"FavoriteStarFill"}
+                                                    style={{color: "yellow"}} 
+                                                />
+                                        ) : null}
+                                         </a>
+                                    </li> )
                             })
-                        } 
+                        }
                     </ul>
+                </Stack>
+                
+                    
             </div>
         )
     }
@@ -101,4 +93,22 @@ export class Order extends Component {
                                         <span style={{borderRadius:'50%', backgroundColor:'black', width:5, height:5, display:'inline-block'}}/>
                                             {`${order.orderNumber} ${order.company} ${order.title} ${order.date} ${order.priority ? '*' : null}`}
                                     </div> 
-*/
+
+
+<Stack.Item align="center">
+                                        <FontIcon 
+                                                iconName={"LocationDot"}
+                                                style={{color: statusOfField[order.status]}}
+                                        />
+                                        </Stack.Item>
+                                        <Stack.Item align="center" >
+                                        <Text> {`${order.orderNumber} ${order.company} ${order.title} ${order.date}`} </Text>
+                                        </Stack.Item>
+                                        <Stack.Item align="center">
+                                        { order.priority ? (
+                                                <FontIcon
+                                                    iconName={"FavoriteStarFill"}
+                                                    style={{color: "yellow"}} 
+                                                />
+                                        ) : null}
+                                        </Stack.Item>*/
