@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Navbar } from '../components/Navbar'
-import "../public/style.css"
+import '../public/style.css'
 import  qtechgroup from '../public/qtechgroup.png'
 import { Stack, initializeIcons, Toggle, Modal, StackItem, DetailsList, SelectionMode } from 'office-ui-fabric-react';
 import { TextField} from 'office-ui-fabric-react/lib/TextField';
@@ -9,21 +9,21 @@ import { Text } from 'office-ui-fabric-react/lib/Text';
 import { StatusCircle } from '../components/statusCircle'
 import { switchStatus } from '../constants/index'
 
-
 export class EditProject extends Component {
     
     _detailListColumns = [
-        { 
+        {
             key: 'priorityColumn', 
             name: 'priority', 
             fieldName: 'priority', 
-            minWidth: 50, 
+            minWidth: 50,
             maxWidth: 100, 
+            isResizable: true,
             onRender: (item) => { return <Toggle defaultChecked={item.priority === 1 ? true : false} onChange={(e, checked) => { this.updatePriority(item.id, checked)} } /> }
         },
         { 
             key: 'projectNrColumn',
-            name: 'project number', 
+            name: 'nummer', 
             fieldName: 'projectNumber', 
             minWidth: 100, 
             maxWidth: 200, 
@@ -41,7 +41,8 @@ export class EditProject extends Component {
             key: 'dateColumn',
             name: 'date', 
             fieldName: 'date', 
-            minWidth: 100, 
+            minWidth: 50, 
+            width: 80,
             maxWidth: 200, 
             isResizable: true
         },
@@ -49,26 +50,44 @@ export class EditProject extends Component {
             key: 'messageColumn',
             name: 'message',
             fieldName: 'message',
-            maxWidth: 200,
+            minWidth: 150,
+            maxWidth: 300,
             isResizable: true
         },
         {
             key: 'statusColumn',
             name: 'status', 
             fieldName: 'status', 
-            minWidth: 100, 
-            maxWidth: 200, 
-            isResizable: true,
+            minWidth: 40, 
+            maxWidth: 60,
             onRender: (item) => { return <StatusCircle status={item.status} id={item.id} updateStatus={this.updateStatus.bind(this)} />}
         },
         {
             key: 'deleteProject',
             name: 'delete',
             fieldName: 'Radera',
-            minWidth: 100, 
-            maxWidth: 200, 
+            minWidth: 80, 
+            maxWidth: 100, 
             isResizable: true,
-            onRender: (item) => {return <PrimaryButton text="Radera" onClick = { () => { this.deleteProject(item.id) }} style={{marginTop: "10px"}} />        }
+            onRender: (item) => {return <PrimaryButton text="Radera" onClick = { () => { this.deleteProject(item.id) }}/>        }
+        }
+    ];
+
+    _checkList= [
+        {
+            key: 'title',
+            name: 'Meddelande',
+            isResizable: true,
+            onRender: (item) => {return <span style={{ whiteSpace: "initial" }}> {item.title} </span>}
+        },
+        {
+            key: 'deleteCheck',
+            name: 'delete',
+            fieldName: 'Radera',
+            minWidth: 80,
+            maxWidth: 100, 
+            isResizable: true,
+            onRender: (item) => { return <PrimaryButton text="Radera" onClick = { () => { this.deleteCheck(item.id) }} /> }
         }
     ];
 
@@ -79,6 +98,9 @@ export class EditProject extends Component {
         this.state = {
             users: [],
             projects: [],
+            checks: [],
+            checkTitle: "",
+            showCheckModul: false,
             showModul: false,
             projectNumber: "",
             company: "",
@@ -90,6 +112,7 @@ export class EditProject extends Component {
 
         this.loadUsers()
         this.getProjects()
+        this.getChecks()
     }
 
 
@@ -103,15 +126,25 @@ export class EditProject extends Component {
                 </StackItem>
                 <div>
                     <PrimaryButton text="Skapa project" onClick = { () => { this.setState({ showModul: true }) }} style={{marginTop: "10px"}} />
-                    <Stack>
+                    <PrimaryButton text="Skapa check" onClick = { () => { this.setState({ showCheckModul: true }) }} style={{marginTop: "10px"}} />
+                    <Stack grow gap={1} horizontal>
                         <DetailsList
+                            className="detaillist-left"
                             items={ this.state.projects }
                             columns={this._detailListColumns}
                             setKey="set"
                             selectionMode={SelectionMode.none}
                         />
-                        
-                        {
+                        <DetailsList
+                            className="detaillist-right"
+                            style={{ alignSelf: "right"}}
+                            items={ this.state.checks }
+                            columns={this._checkList}
+                            setKey="set"
+                            selectionMode={SelectionMode.none}
+                        />
+                    </Stack>
+                    {
                             this.state.showModul && (
                             <Modal className = "Modal"
                                 isOpen={this.state.showModul}
@@ -135,7 +168,21 @@ export class EditProject extends Component {
                             </Modal>
                             )
                         }
-                    </Stack>
+                        {
+                            this.state.showCheckModul && (
+                            <Modal className = "Modal"
+                                isOpen={this.state.showCheckModul}
+                                onDismiss={() => this.setState({showCheckModul: !this.state.showModul}) }
+                                isBlocking={false}
+                            >
+                                <form className="Modal_New_User">
+                                    <h2>Lägg till ny check</h2>
+                                    <TextField label="Meddelande" multiline autoAdjustHeight className ="TextField" value={this.state.checkTitle} onChange={(e) => {this.setState({ checkTitle: e.target.value}) }}/>
+                                    <PrimaryButton text="Skapa check" onClick = { () => this.createCheck()} style={{marginTop: "10px"}} />
+                                </form>
+                            </Modal>
+                            )
+                        }
                 </div>
             </div>
         )
@@ -151,9 +198,8 @@ export class EditProject extends Component {
             console.log("error: ", error)
         })
     }
-
+    // Projects
     getProjects = () => {
-
         fetch("/projects")
         .then( res => res.json())
         .then( data => {
@@ -166,7 +212,6 @@ export class EditProject extends Component {
     }
 
     createProject = () => {
-
         fetch('/projects', {
             method: 'POST',
             headers: {
@@ -233,7 +278,6 @@ export class EditProject extends Component {
     }
 
     deleteProject = (id) => {
-
         fetch('/projects', {
             method: 'DELETE',
             headers: {
@@ -245,6 +289,56 @@ export class EditProject extends Component {
         .then(res =>    {
             console.log(res)
             this.getProjects()
+        }).catch(error =>   {
+            console.log(error)
+        })
+    }
+
+    //Checks
+    getChecks = () => {
+        fetch("/checks?columnId=1")
+        .then( res => res.json())
+        .then( data => {
+            console.log(data)
+            this.setState({checks: [...data.checks]})
+        })
+        .catch( error => {
+            console.error("error fetching projects: ", error)
+        })
+    }
+
+    createCheck = () => {
+        fetch('/checks', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                title: this.state.checkTitle,
+                columnId: 1
+            })
+        })
+        .then( Response => Response.json())
+        .then( res =>    {
+            console.log(res)
+            this.getChecks();
+            this.setState({ showCheckModul: false, checkTitle: ""})
+        }).catch( error => {
+            console.log(error)
+        })
+    }
+
+    deleteCheck = (id) => {
+        fetch('/checks', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: "id=" + id
+        })
+        .then(Response => Response.json())
+        .then(res =>    {
+            this.getChecks()
         }).catch(error =>   {
             console.log(error)
         })

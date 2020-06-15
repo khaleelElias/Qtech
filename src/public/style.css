@@ -134,10 +134,14 @@
   text-align: center;
   overflow-wrap: break-word;
 }
-.styleOrderColumn{
-   
-  
-  }
-  .orderfahed{
-    margin: 10px;
-  }
+
+.grid-wrapper {
+  display: grid !important;
+}
+
+.detaillist-left {
+  width: 69vw;
+}
+.detaillist-right {
+  width: 30vw;
+}
