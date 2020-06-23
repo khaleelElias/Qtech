@@ -15,7 +15,7 @@ export class EditProject extends Component {
     _detailListColumns = [
         { 
             key: 'priorityColumn', 
-            name: 'priority', 
+            name: 'Prioritet', 
             fieldName: 'priority', 
             minWidth: 50, 
             maxWidth: 100, 
@@ -23,15 +23,15 @@ export class EditProject extends Component {
         },
         { 
             key: 'projectNrColumn',
-            name: 'project number', 
-            fieldName: 'projectNumber', 
+            name: 'Projekt number', 
+            fieldName: 'ProjectNumber', 
             minWidth: 100, 
             maxWidth: 200, 
             isResizable: true
         },
         {
             key: 'companyColumn',
-            name: 'company', 
+            name: 'Företag', 
             fieldName: 'company', 
             minWidth: 100, 
             maxWidth: 200, 
@@ -39,7 +39,7 @@ export class EditProject extends Component {
         },
         {
             key: 'dateColumn',
-            name: 'date', 
+            name: 'Datum', 
             fieldName: 'date', 
             minWidth: 100, 
             maxWidth: 200, 
@@ -47,7 +47,7 @@ export class EditProject extends Component {
         },
         {
             key: 'messageColumn',
-            name: 'message',
+            name: 'Beskrivning',
             fieldName: 'message',
             maxWidth: 200,
             isResizable: true
@@ -63,7 +63,7 @@ export class EditProject extends Component {
         },
         {
             key: 'deleteProject',
-            name: 'delete',
+            name: 'Radera Projekt',
             fieldName: 'Radera',
             minWidth: 100, 
             maxWidth: 200, 
@@ -99,12 +99,13 @@ export class EditProject extends Component {
             <div className= "header">
                 <Navbar users={this.state.users} />
                 <StackItem className = "Dashboard_Titles">
-                    <Text  variant={'xxLarge'}>  Project</Text>
+                    <Text  variant={'xxLarge'}>  Projekt</Text>
                 </StackItem>
                 <div>
-                    <PrimaryButton text="Skapa project" onClick = { () => { this.setState({ showModul: true }) }} style={{marginTop: "10px"}} />
+                    <PrimaryButton text="Skapa Projekt" onClick = { () => { this.setState({ showModul: true }) }} style={{marginTop: "10px"}} />
                     <Stack>
                         <DetailsList
+                            maxWidth = "50%"
                             items={ this.state.projects }
                             columns={this._detailListColumns}
                             setKey="set"
@@ -119,7 +120,7 @@ export class EditProject extends Component {
                                 isBlocking={false}
                             >
                                 <form className="Modal_New_User">
-                                    <h2>Lägg till ny project</h2>
+                                    <h2>Lägg till ny Projekt</h2>
                                     <TextField label="Project nummer" className ="TextField" value={this.state.projectNumber} onChange={(e) => {this.setState({ projectNumber: e.target.value}) }}/>
                                     <TextField label="Project company" className ="TextField" value={this.state.company} onChange={ (e) => { this.setState({company: e.target.value}) }}/>
                                     <TextField label="Project message" className ="TextField" value={this.state.message} onChange={ (e) => { this.setState({ message: e.target.value}) }}/>

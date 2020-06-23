@@ -90,17 +90,17 @@ export class Project extends Component {
         return (
             <Stack>
                 
-                 <Stack  style= {{width:"fit-content"}} >
+                 <Stack>
                     <Stack Stack horizontal   className = "Dashboard_Titles">
                         <FontIcon className={classNames.deepSkyBlue}  iconName="TextDocumentShared"/>
-                        <DefaultButton  text="Projekt" onClick={() => {this.redirectFunc()}} />
+                        <DefaultButton  text="PROJEKT" onClick={() => {this.redirectFunc()}} />
                         <Persona size={PersonaSize.size40}/>
                     </Stack>
-                    <Stack  className = "Dashboard_Titles">
+                    <Stack  className = "solidListStyle">
                     {
                         this.state.checks.map((check) =>{
                             return(
-                                <Stack horizontal style={{padding:"1px"}}>
+                                <Stack horizontal className = "solidList">
                                     {check.title}
                                     <StatusCircle status={check.status} id={check.id} updateStatus={this.updateStatus.bind(this)} />
                                 </Stack>
@@ -110,18 +110,28 @@ export class Project extends Component {
                     
                     </Stack>
                     <Stack>
-                    <ul>
+                    <ul className= "ulStyle">
                         {
                             this.state.projects.map( (project) => { 
-                                return ( <li style={{borderLeft:`5px solid ${statusOfField[project.status]}`}}> 
-                                        <a> {`${project.projectNumber} ${project.company} ${project.date} ${project.message}`}
+                                const title = `${project.projectNumber} ${project.company} ${project.date}`
+                                return (
+                                    <li style={{borderLeft:`5px solid ${statusOfField[project.status]}`}}> 
+                                        <a className="listItem"> { `${title.slice(0, 40)} ${ title.length > 40 ?  "..." : ""}` }
+                                        <div className="descriptionOfListItem">
+                                            <p style={{textAlign:'center'}}>{project.projectNumber}</p>
+                                            <p>{project.company}</p>
+                                            <p>{project.date}</p>
+                                            <p>{project.message}</p>
+
+                                        </div>
                                         { project.priority ? (
-                                                <FontIcon
-                                                    iconName={"FavoriteStarFill"}
-                                                    style={{color: "yellow"}} 
-                                                />
+                                            <FontIcon
+                                                iconName={"FavoriteStarFill"}
+                                                style={{color: "yellow"}} 
+                                            />
                                         ) : null} </a>
-                                    </li> )
+                                    </li>
+                                )
                             })
                         }
                     </ul>

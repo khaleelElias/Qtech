@@ -1,3 +1,4 @@
+html, header {margin: 0; height: 110%; overflow: hidden}
 
 .header{
   background-color: #EAEDED ;
@@ -7,6 +8,26 @@
   background-size: cover;*/
 }
   
+.descriptionOfListItem{
+  position: absolute;
+  padding: 25;
+  background-color: #c6c6c6;
+  opacity: 0;
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  transition: all 1s;
+}
+
+
+.listItem:hover .descriptionOfListItem{
+  background: white;
+  transition: 2s;
+  box-shadow: 10px 10px 6px -6px black;
+  min-width: 200px;
+  opacity: 1;
+}
+
+
   /* Create two equal columns that floats next to each other */
   .column {
     float: left;
@@ -77,19 +98,11 @@
  .img{
   padding: 12px;
  }
- .Navbar{
-  
- }
 
- .dashboardHeight {
- 
-}
  .Dashboard_Columns{
-
+  width: 25vw;
    border: 1px solid #D0D3D4;
-
    /*den här cssn är till hela dashboard gränserna*/
-   
    
 
  }
@@ -111,23 +124,12 @@
   align-self: center;
   
 }
-.Dashboard_Titles.css-54{
-  width: fit-content;
-  align-self: center;
 
-}
 .ms-Button{
   width: fit-content;
   align-self: center;
 }
 
-
-
-.ms-Toggle-thumb.thumb-63 {
-  
-  border: none;
-  
-}
 .Persona_In_Dropdown{
 
   padding: 10px;
@@ -139,10 +141,12 @@
 .Actevity_Text{
 
   padding: 10px;
-  max-width: 200px;
   align-items: center;
   text-align: center;
   overflow-wrap: break-word;
+  white-space: pre-line;
+  max-width: 19vw;
+  
 }
 
 .Test{
@@ -158,7 +162,7 @@
 
 
 }
-ul{
+.ulStyle{
   height: 70vh;
   list-style-type: none;
   overflow: hidden;
@@ -173,6 +177,8 @@ li a{
   width: fit-content;
   overflow-y: scroll;
   height: auto;
+  font-family: cursive;
+  font-size: initial;
   margin: 0 0 7px 0;
   background: #F7F5F2 97% center no-repeat;
 
@@ -181,6 +187,36 @@ li a{
   text-decoration: none;
 
 }
+/* width */
 ::-webkit-scrollbar {
-  display: none;
+  width: 5px;
+  
+}
+
+
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(230, 219, 219); 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+   
+}
+
+.solidList{
+  padding: 1px;
+  font-weight: bold;
+  font-family: "Lucida Console", Courier, monospace;
+}
+.solidListStyle{
+  
+  background-color: #f3f2f1;
+  border-radius: 10px;
+  padding:8px;
+  width: fit-content;
+  align-self: center;
+
 }

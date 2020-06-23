@@ -30,7 +30,7 @@ export class View_Persona extends Component {
         .then(Response => Response.json())
         .then( () => {
             this.setState({ isShown: false })
-            this.props.loadData()
+            window.location.reload()
         }).catch(error => {
             console.log("error status", error)
         })

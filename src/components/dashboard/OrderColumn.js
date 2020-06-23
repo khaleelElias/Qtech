@@ -3,7 +3,9 @@ import { Persona, PersonaSize,  Text, divProperties, Stack, DefaultButton, perso
 import { mergeStyles, mergeStyleSets } from 'office-ui-fabric-react/lib/Styling';
 import { FontIcon } from 'office-ui-fabric-react/lib/Icon';
 import { statusOfField, switchStatusColor } from '../../constants/index'
-import { initializeIcons  } from 'office-ui-fabric-react';       
+import { initializeIcons  } from 'office-ui-fabric-react';  
+import { StatusCircle } from '../statusCircle'
+
 
 
 
@@ -27,12 +29,45 @@ export class Order extends Component {
         super(props)
 
         this.state = {
-            orders: []
+            orders: [],
+            checks: []
         }
         console.log("Order is run?")
 
         this.getOrders()
+        this.getChecks()
         initializeIcons()
+    }
+
+    getChecks = () => {
+        fetch("/checks?columnId=2")
+        .then( res => res.json())
+        .then( data => {
+            console.log("fetching checks to column: ", data)
+            this.setState({checks: [...data.checks]})
+        })
+        .catch( error => {
+            console.error("error fetching checks: ", error)
+        })
+    }
+
+    updateStatus = (id, status) => {
+        status = status === "good" ? "normal" : status === "normal" ? "bad" : "good"
+
+        fetch('/checks/status', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: "status=" + status + "&id=" + id
+        })
+        .then(Response => Response.json())
+        .then(res =>    {
+            console.log(res)
+            this.getChecks()
+        }).catch(error =>   {
+            console.log(error)
+        })
     }
 
     getOrders = () => {
@@ -55,35 +90,55 @@ export class Order extends Component {
     render() {
         
         return (
-            <div>
-                <Stack >
+            <Stack>
+                <Stack horizontalAlign="center">
                     <Stack horizontal  gap = {8} className = "Dashboard_Titles">
                         <FontIcon className={classNames.deepSkyBlue}  iconName="ReservationOrders"/>
                         <DefaultButton   text="ORDER/INKÖP" onClick={() => {this.redirectFunc()}} />
                         <Persona size={PersonaSize.size40}/>
                     </Stack>                
-                </Stack>
-                <Stack>
-                <ul  style={{alignSelf:'center', listStyleType:"none"}}>
+               
+                    <Stack className = "solidListStyle">
                         {
-                            this.state.orders.map( (order) => { 
-                                return ( <li style={{borderLeft:`5px solid ${statusOfField[order.status]}`}}> 
-                                        <a> {`${order.orderNumber} ${order.company} ${order.date} ${order.message} `}
-                                        { order.priority ? (
-                                                <FontIcon
-                                                    iconName={"FavoriteStarFill"}
-                                                    style={{color: "yellow"}} 
-                                                />
-                                        ) : null}
-                                         </a>
-                                    </li> )
+                            this.state.checks.map((check) =>{
+                                return(
+                                    <Stack horizontal className = "solidList">
+                                        {check.title}
+                                        <StatusCircle status={check.status} id={check.id} updateStatus={this.updateStatus.bind(this)} />
+                                    </Stack>
+                                )
                             })
                         }
-                    </ul>
+                    </Stack>
                 </Stack>
-                
-                    
-            </div>
+                <ul className= "ulStyle">
+                {
+                    this.state.orders.map( (order) => { 
+                        const title = `${order.orderNumber} ${order.company} `
+
+                        return ( 
+                            <li  style={{borderLeft:`5px solid ${statusOfField[order.status]}`}}> 
+                                <a className="listItem"> { `${title.slice(0, 40)} ${ title.length > 40 ?  "..." : ""}` }
+                                    <div className="descriptionOfListItem">
+                                        <p style={{textAlign:'center'}}>{order.orderNumber}</p>
+                                        <p>{order.company}</p>
+                                        <p>{order.date}</p>
+                                        <p>{order.message}</p>
+
+                                    </div>
+                                    { order.priority ? (
+                                            <FontIcon
+                                                iconName={"FavoriteStarFill"}
+                                                style={{color: "yellow"}} 
+                                            />
+                                    ) : null}
+                                </a>
+                            </li> 
+                        )
+                    })
+                }
+                </ul>
+            </Stack>
         )
     }
 }

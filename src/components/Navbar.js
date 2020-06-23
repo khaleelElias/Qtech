@@ -26,6 +26,10 @@ export class Navbar extends Component {
         initializeIcons();
     }
 
+    reloadPage()  {
+        window.location.reload(false);
+    }
+
     render() {
         return (
             <div className = "Navbar">
@@ -35,6 +39,7 @@ export class Navbar extends Component {
                     </Link>
                     <Week_Number/>
                     <Action_Menu reloadData={this.props.loadData} history={this.props.history} />
+                    <FontIcon iconName="Refresh" className={iconClass} onClick={this.reloadPage}/>
                     <a style={{marginLeft:"auto"}} href="https://qtechgroup.sharepoint.com/SitePages/Intranet.aspx">
                         <img className = "img" src={qtechgroup}  alt=''/>
                     </a>
@@ -45,20 +50,3 @@ export class Navbar extends Component {
         )
     }
 }
-
-/*
-<div class="ms-Grid" dir="ltr">
-                    <div class="ms-Grid-row">
-                        <div class="ms-Grid-col ms-sm12 ms-lg4">
-                            <Week_Number/>
-                            { this.props.actionMenuHidden ? null : <Action_Menu reloadData={this.props.loadData} history={this.props.history} />}
-                        </div>
-                        <div class="ms-Grid-col ms-sm12 ms-lg4">
-                            <center>
-                                <h1> {this.props.title || "" }</h1>
-                            </center>
-                        </div>
-                    </div>
-                </div>
-
-*/

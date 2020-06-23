@@ -7,14 +7,23 @@ import Routes from './routes'
 
 class App extends Component {
 
+  constructor (props){
+    super(props)
+    
+    //Uppdaterar sidan varje 5min
+    setInterval(this.reloadPage, 300000)
+  }
+
+  reloadPage()  {
+    window.location.reload(false);
+  }
+
   render() {
     return (
       <div>
-        <header>
           <Router history={createBrowserHistory()}>
             <Routes/>
           </Router>
-        </header>
     </div>
     )
   }

@@ -5,11 +5,15 @@ const userStatusOptions = [
     { key: 'bad', text: 'Mycket stressigt' },
     
 ]
-
+//create column
+const createColumnOptions = [
+    { key: '1', text: 'Placera åt höger'},
+    { key: '2', text:'Placera åt vänster' },
+]
 //order
 const statusOfField = {
     "good":"#0b852b",
-    "normal":"#E67E22",
+    "normal":"#FFFF00",
     "bad":"#FF0000"
 }
 
@@ -43,5 +47,6 @@ export {
     getWeekNumber,
     statusOfField,
     switchStatus,
-    switchStatusColor
+    switchStatusColor,
+    createColumnOptions,
 }

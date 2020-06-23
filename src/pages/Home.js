@@ -18,7 +18,6 @@ export class Home extends React.Component{
         }
 
         this.loadData()
-        this.fetchColumns()
     }
 
     render() {
@@ -33,18 +32,7 @@ export class Home extends React.Component{
         );
     }
 
-    fetchColumns()  {
-        fetch('/columns', {
-            method: 'GET',
-        }).then(response => 
-            response.json()
-        ).then(res => {
-            console.log(res)
-            this.setState({columns: [...res.columns]})
-        }).catch(error => {
-            console.log(error)
-        });
-    }
+  
 
     loadData = () => {
         fetch('/users')
