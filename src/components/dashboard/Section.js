@@ -129,11 +129,14 @@ export class Section extends Component {
             </Stack>
         )
     }
+<<<<<<< HEAD
 
     
 
 
 
+=======
+>>>>>>> 73272b9c6eb012baab254fa84e4c45e8e6cd27b1
     
 }
 

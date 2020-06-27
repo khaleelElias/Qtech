@@ -26,7 +26,6 @@ export class Home extends React.Component{
                 <header >
                     <Navbar history={this.props.history} loadData={this.loadData.bind(this)} users={this.state.users} />
                 </header>
-              
                 <Dashboard history={this.props.history} loadData={this.loadData.bind(this)}/>
             </div>
         );

@@ -155,12 +155,11 @@ export class EditOrder extends Component {
     }
 
     getOrders = () => {
-
         fetch("/orders")
         .then( res => res.json())
         .then( data => {
             this.setState({orders: [...data.orders]})
-
+            
         })
         .catch( error => {
             console.error("error fetching orders: ", error)

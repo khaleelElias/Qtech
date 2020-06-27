@@ -6,7 +6,6 @@ import { PersonaDropdown } from '../PersonaDropdown'
 export class Activity extends Component {
     constructor(props) {
         super(props)
-
         this.state = {
             columns:[],
             isShown: false,
@@ -17,10 +16,8 @@ export class Activity extends Component {
             supervisor:null,
             type:null
         }
-
         this.fetchColumns()
     }   
-
     IActivityStyleProps = {
         borderBlockEnd:" 1px solid red", 
         padding:10
@@ -91,7 +88,8 @@ export class Activity extends Component {
 
     render() {
         return (
-            <Stack >
+            <div>
+                <Stack >
                     {
                         this.state.columns.map( (column, index) => {
                             return (
@@ -125,13 +123,38 @@ export class Activity extends Component {
                             </Modal>
                             )
                     }
-            </Stack>
+                </Stack>
+                <Stack>
+                
+                    <Stack horizontal  gap={8} className = "Dashboard_Titles">
+                        <DefaultButton   text={"Activities"} onClick={() => {this.redirectFunc()}} />
+                        <Persona size={PersonaSize.size40}/>
+             
+
+                        {   
+                            this.state.columns.map( (column) => {
+                                return (
+                                    <div>
+                                        <Stack>
+                                            <Stack horizontal  gap={8} className = "Dashboard_Titles{">
+                                                <DefaultButton   text={column.title} onClick={() => {this.redirectFunc()}} />
+                                                <PersonaDropdown id={"dinpap"} loadData={this.props.loadData} columnId={column.id} supervisorId={column.supervisor}/>     
+                                           
+                                            </Stack>
+
+                                             <Text className= "Actevity_Text">{column.message} hej</Text>   
+                                        
+                                        </Stack>
+                                    
+                                    </div>
+                                )
+                            })
+                        }
+                    </Stack>
+               </Stack>
+            </div>
         )
     }
-
-    
-
-
 
     
 }
