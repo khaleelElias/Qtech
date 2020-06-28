@@ -116,13 +116,12 @@ export class Project extends Component {
                                 const title = `${project.projectNumber} ${project.company} ${project.date}`
                                 return (
                                     <li style={{borderLeft:`5px solid ${statusOfField[project.status]}`}}> 
-                                        <a className="listItem"> { `${title.slice(0, 40)} ${ title.length > 40 ?  "..." : ""}` }
+                                        <a className="listItem"> { `${title.slice(0, 40)} ${ title.length > 40 ?  "..." : "" }` }
                                         <div className="descriptionOfListItem">
                                             <p style={{textAlign:'center'}}>{project.projectNumber}</p>
                                             <p>{project.company}</p>
                                             <p>{project.date}</p>
                                             <p>{project.message}</p>
-
                                         </div>
                                         { project.priority ? (
                                             <FontIcon

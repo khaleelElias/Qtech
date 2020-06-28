@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Modal, TextField, Text, Stack, DefaultButton, PrimaryButton} from 'office-ui-fabric-react'
+import { Modal, TextField, Text, Stack, DefaultButton, PrimaryButton, Persona, PersonaSize } from 'office-ui-fabric-react'
 import '../../public/style.css'
 import { PersonaDropdown } from '../PersonaDropdown'
 
@@ -125,11 +125,9 @@ export class Activity extends Component {
                     }
                 </Stack>
                 <Stack>
-                
                     <Stack horizontal  gap={8} className = "Dashboard_Titles">
                         <DefaultButton   text={"Activities"} onClick={() => {this.redirectFunc()}} />
                         <Persona size={PersonaSize.size40}/>
-             
 
                         {   
                             this.state.columns.map( (column) => {

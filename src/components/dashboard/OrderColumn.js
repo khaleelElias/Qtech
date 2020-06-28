@@ -90,13 +90,8 @@ export class Order extends Component {
     render() {
         
         return (
-<<<<<<< HEAD
             <Stack>
                 <Stack horizontalAlign="center">
-=======
-            <div >
-                <Stack >
->>>>>>> 73272b9c6eb012baab254fa84e4c45e8e6cd27b1
                     <Stack horizontal  gap = {8} className = "Dashboard_Titles">
                         <FontIcon className={classNames.deepSkyBlue}  iconName="ReservationOrders"/>
                         <DefaultButton   text="ORDER/INKÖP" onClick={() => {this.redirectFunc()}} />

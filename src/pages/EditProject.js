@@ -23,15 +23,11 @@ export class EditProject extends Component {
         },
         { 
             key: 'projectNrColumn',
-<<<<<<< HEAD
             name: 'Projekt number', 
-            fieldName: 'ProjectNumber', 
-=======
-            name: 'nummer', 
             fieldName: 'projectNumber', 
->>>>>>> 73272b9c6eb012baab254fa84e4c45e8e6cd27b1
-            minWidth: 100, 
-            maxWidth: 200, 
+            minWidth: 40, 
+            width: 50,
+            maxWidth: 100,  
             isResizable: true
         },
         {
@@ -39,16 +35,16 @@ export class EditProject extends Component {
             name: 'Företag', 
             fieldName: 'company', 
             minWidth: 100, 
-            maxWidth: 200, 
+            maxWidth: 150, 
             isResizable: true
         },
         {
             key: 'dateColumn',
             name: 'Datum', 
             fieldName: 'date', 
-            minWidth: 50, 
-            width: 80,
-            maxWidth: 200, 
+            minWidth: 40, 
+            width: 50,
+            maxWidth: 60, 
             isResizable: true
         },
         {
@@ -57,7 +53,8 @@ export class EditProject extends Component {
             fieldName: 'message',
             minWidth: 150,
             maxWidth: 300,
-            isResizable: true
+            isResizable: true,
+            onRender: (item) => {return <span style={{ whiteSpace: "initial" }}> {item.message} </span>}
         },
         {
             key: 'statusColumn',
@@ -130,18 +127,11 @@ export class EditProject extends Component {
                     <Text  variant={'xxLarge'}>  Projekt</Text>
                 </StackItem>
                 <div>
-<<<<<<< HEAD
-                    <PrimaryButton text="Skapa Projekt" onClick = { () => { this.setState({ showModul: true }) }} style={{marginTop: "10px"}} />
-                    <Stack>
-                        <DetailsList
-                            maxWidth = "50%"
-=======
                     <PrimaryButton text="Skapa project" onClick = { () => { this.setState({ showModul: true }) }} style={{marginTop: "10px"}} />
                     <PrimaryButton text="Skapa check" onClick = { () => { this.setState({ showCheckModul: true }) }} style={{marginTop: "10px"}} />
                     <Stack grow gap={1} horizontal>
                         <DetailsList
                             className="detaillist-left"
->>>>>>> 73272b9c6eb012baab254fa84e4c45e8e6cd27b1
                             items={ this.state.projects }
                             columns={this._detailListColumns}
                             setKey="set"
@@ -149,7 +139,6 @@ export class EditProject extends Component {
                         />
                         <DetailsList
                             className="detaillist-right"
-                            style={{ alignSelf: "right"}}
                             items={ this.state.checks }
                             columns={this._checkList}
                             setKey="set"
@@ -308,10 +297,9 @@ export class EditProject extends Component {
 
     //Checks
     getChecks = () => {
-        fetch("/checks?columnId=1")
+        fetch("/checks?columnId=3002")
         .then( res => res.json())
         .then( data => {
-            console.log(data)
             this.setState({checks: [...data.checks]})
         })
         .catch( error => {
@@ -327,7 +315,7 @@ export class EditProject extends Component {
             },
             body: JSON.stringify({
                 title: this.state.checkTitle,
-                columnId: 1
+                columnId: 3002
             })
         })
         .then( Response => Response.json())

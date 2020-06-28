@@ -97,28 +97,15 @@ html, header {margin: 0; height: 110%; overflow: hidden}
  .img{
   padding: 12px;
  }
-<<<<<<< HEAD
-=======
  .Navbar{
   background-color: #f78888;
  }
->>>>>>> 73272b9c6eb012baab254fa84e4c45e8e6cd27b1
 
  .Dashboard_Columns{
-<<<<<<< HEAD
   width: 25vw;
    border: 1px solid #D0D3D4;
    /*den här cssn är till hela dashboard gränserna*/
-   
-
  }
-=======
-   background-color: #ececec;
-   border: 1px solid ;
-
-   /*den här cssn är till hela dashboard gränserna*/
-  }
->>>>>>> 73272b9c6eb012baab254fa84e4c45e8e6cd27b1
  .dashboardHeaders {
    text-align: center;
    border-radius: 5px;
@@ -134,27 +121,18 @@ html, header {margin: 0; height: 110%; overflow: hidden}
   margin: 5px;
   padding:8px;
 }
-<<<<<<< HEAD
-=======
-
 
 .Dashboard_Titles.css-54{
   width: fit-content;
   align-self: center;
->>>>>>> 73272b9c6eb012baab254fa84e4c45e8e6cd27b1
-
+}
 .ms-Button{
-  width: fit-content;
   align-self: center;
   background-color:#ececec ;
 }
-<<<<<<< HEAD
-
-=======
 .ms-Toggle-thumb.thumb-63 {
   border: none; 
 }
->>>>>>> 73272b9c6eb012baab254fa84e4c45e8e6cd27b1
 .Persona_In_Dropdown{
   padding: 10px;
   margin: 10px;
@@ -173,20 +151,8 @@ html, header {margin: 0; height: 110%; overflow: hidden}
   
 }
 
-<<<<<<< HEAD
-.Test{
-  display: block;
-  width: 300px;
-  height: 30px;
-  margin: 0 0 7px 0;
-  background: #F7F5F2;
-  font-size: 18px;
-  color: #333;
-  padding: 5px 10 0 20px;
-  text-decoration: none;
 
 
-}
 .ulStyle{
   height: 70vh;
   list-style-type: none;
@@ -210,33 +176,20 @@ li a{
   color: #333;
   padding: 5px 0 0 5px;
   text-decoration: none;
-=======
+}
+
 .grid-wrapper {
   display: grid !important;
 }
->>>>>>> 73272b9c6eb012baab254fa84e4c45e8e6cd27b1
-
-.detaillist-left {
-  width: 69vw;
-}
-<<<<<<< HEAD
 /* width */
 ::-webkit-scrollbar {
   width: 5px;
-  
 }
-
-
  
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: rgb(230, 219, 219); 
   border-radius: 10px;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-   
 }
 
 .solidList{
@@ -245,15 +198,16 @@ li a{
   font-family: "Lucida Console", Courier, monospace;
 }
 .solidListStyle{
-  
   background-color: #f3f2f1;
   border-radius: 10px;
   padding:8px;
   width: fit-content;
   align-self: center;
-
-=======
+}
 .detaillist-right {
-  width: 30vw;
->>>>>>> 73272b9c6eb012baab254fa84e4c45e8e6cd27b1
+  width: 40vw;
+  align-self: 'right';
+}
+.detaillist-left {
+  width: 59vw;
 }

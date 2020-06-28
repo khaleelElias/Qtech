@@ -5,7 +5,7 @@ export class StatusCircle extends React.Component   {
     render()    {
         return(
             <div
-                class="statusCircle"
+                className="statusCircle"
                 style={ { backgroundColor: switchStatusColor(this.props.status) }}
                 onClick={() => {this.props.updateStatus(this.props.id, this.props.status)} }
             />
