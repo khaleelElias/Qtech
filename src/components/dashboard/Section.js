@@ -9,7 +9,6 @@ export class Section extends Component {
 
         this.state = {
             columns:[],
-            isShown: false,
             showModul: false,
             title: null,
             message: null,
@@ -70,6 +69,7 @@ export class Section extends Component {
             console.log("error fethcing columns: ", error)
         })
     }
+    
     deleteColumn = (id) => {
         fetch('/columns', {
             method:"DELETE",
@@ -82,8 +82,8 @@ export class Section extends Component {
         })
         .then(Response => Response.json())
         .then( () => {
-            this.setState({ isShown: false })
-            this.props.loadData()
+            this.setState({ showModul: false })
+            this.fetchColumns()
         }).catch(error => {
             console.log("error status", error)
         })
@@ -95,11 +95,11 @@ export class Section extends Component {
                     {
                         this.state.columns.map( (column, index) => {
                             return (
-                                <Stack>
+                                <Stack key={`SectionColumn${index}`}>
                                     <Stack  horizontalAlign="center" style = {{borderBlockEnd: "1px solid gray"}}>
                                         <Stack horizontal  gap={8} className = "Dashboard_Titles">
                                             <DefaultButton  text={column.title} onClick={() => {this.openEditActivity(column)}} />
-                                            <PersonaDropdown id={`Activity${index}`} loadData={this.props.loadData} columnId={column.id} supervisorId={column.supervisor}/>
+                                            <PersonaDropdown id={`Section${index}`} loadData={this.props.loadData} columnId={column.id} supervisorId={column.supervisor}/>
                                         </Stack>
 
                                         <Text className= "Actevity_Text">{column.message}</Text>
@@ -116,12 +116,15 @@ export class Section extends Component {
                                 onDismiss={() => this.setState({showModul: !this.state.showModul}) }
                                 isBlocking={false}
                             >
-                                <form classNameName="Modal_New_User">
+                                <form className="Modal_New_User">
                                     
-                                    <TextField label="title" value={this.state.title} onChange={ (e) => { this.setState({ title: e.target.value }) }}/>
-                                    <TextField label="message" multiline autoAdjusclassNameht className ="TextField" value={this.state.message} onChange={ (e) => { this.setState({ message: e.target.value }) }}/>
-                                    
-                                    <PrimaryButton text="Spara" onClick = { () => this.fetchEditActivity()} style={{marginTop: "10px"}} />
+                                    <TextField label="Rubrik" value={this.state.title} onChange={ (e) => { this.setState({ title: e.target.value }) }}/>
+                                    <TextField label="Innehåll" multiline autoAdjusclassNameht className ="TextField" value={this.state.message} onChange={ (e) => { this.setState({ message: e.target.value }) }}/>
+
+                                    <br/>                                    
+                                    <PrimaryButton text="Spara" onClick = { () => this.fetchEditActivity()} />
+                                    <PrimaryButton text="Ta bort" onClick = { () => this.deleteColumn(this.state.id)}  style={{float:"right"}}/>
+
                                 </form>
                             </Modal>
                             )

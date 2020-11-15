@@ -1,6 +1,6 @@
 //user index
 const userStatusOptions = [
-    { key: 'good', text: 'God Balans'},
+    { key: 'good', text: 'Bra'},
     { key: 'well', text:'Stressigt' },
     { key: 'bad', text: 'Mycket stressigt' },
     

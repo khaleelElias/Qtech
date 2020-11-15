@@ -1,4 +1,4 @@
-html, header {margin: 0; height: 110%; overflow: hidden}
+html, header {margin: 0; height: 100%; overflow: visible}
 
 .header{
   background-color: #EAEDED ;
@@ -8,26 +8,6 @@ html, header {margin: 0; height: 110%; overflow: hidden}
   background-size: cover;*/
 }
   
-.descriptionOfListItem{
-  position: absolute;
-  padding: 25;
-  background-color: #c6c6c6;
-  opacity: 0;
-  -webkit-transition: all 1s;
-  -moz-transition: all 1s;
-  transition: all 1s;
-}
-
-
-.listItem:hover .descriptionOfListItem{
-  background: white;
-  transition: 2s;
-  box-shadow: 10px 10px 6px -6px black;
-  min-width: 200px;
-  opacity: 1;
-}
-
-
   /* Create two equal columns that floats next to each other */
   .column {
     float: left;
@@ -106,6 +86,7 @@ html, header {margin: 0; height: 110%; overflow: hidden}
    border: 1px solid #D0D3D4;
    /*den här cssn är till hela dashboard gränserna*/
  }
+ 
  .dashboardHeaders {
    text-align: center;
    border-radius: 5px;
@@ -128,11 +109,12 @@ html, header {margin: 0; height: 110%; overflow: hidden}
 }
 .ms-Button{
   align-self: center;
-  background-color:#ececec ;
 }
 .ms-Toggle-thumb.thumb-63 {
   border: none; 
+
 }
+
 .Persona_In_Dropdown{
   padding: 10px;
   margin: 10px;
@@ -154,10 +136,8 @@ html, header {margin: 0; height: 110%; overflow: hidden}
 
 
 .ulStyle{
-  height: 70vh;
   list-style-type: none;
-  overflow: hidden;
-  overflow-y: scroll;
+  overflow: visible;
   padding: 0px;
   margin-left: 5px;
   margin-right: 5px;
@@ -166,7 +146,6 @@ li a{
 
   display: block;
   width: fit-content;
-  overflow-y: scroll;
   height: auto;
   font-family: cursive;
   font-size: initial;

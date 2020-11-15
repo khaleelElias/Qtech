@@ -94,7 +94,7 @@ export class Order extends Component {
                 <Stack horizontalAlign="center">
                     <Stack horizontal  gap = {8} className = "Dashboard_Titles">
                         <FontIcon className={classNames.deepSkyBlue}  iconName="ReservationOrders"/>
-                        <DefaultButton   text="ORDER/INKÖP" onClick={() => {this.redirectFunc()}} />
+                        <DefaultButton   text="ORDER & INKÖP" onClick={() => {this.redirectFunc()}} />
                         <Persona size={PersonaSize.size40}/>
                     </Stack>                
                
@@ -119,13 +119,7 @@ export class Order extends Component {
                         return ( 
                             <li  style={{borderLeft:`5px solid ${statusOfField[order.status]}`}}> 
                                 <a className="listItem"> { `${title.slice(0, 40)} ${ title.length > 40 ?  "..." : ""}` }
-                                    <div className="descriptionOfListItem">
-                                        <p style={{textAlign:'center'}}>{order.orderNumber}</p>
-                                        <p>{order.company}</p>
-                                        <p>{order.date}</p>
-                                        <p>{order.message}</p>
-
-                                    </div>
+                                    
                                     { order.priority ? (
                                             <FontIcon
                                                 iconName={"FavoriteStarFill"}

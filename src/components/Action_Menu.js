@@ -109,10 +109,10 @@ export class Action_Menu extends Component {
                 onDismiss={() => this.setState({showModul2: !this.state.showModul2}) }
                 isBlocking={false}
             >
-            <form classNameName = "Modal_New_User">
-              <h2>Lägg till ny Activitet</h2>
-              <TextField label="title" value={this.state.title} onChange={ (e) => { this.setState({title: e.target.value})}}/>
-              <TextField label="INNEHÅLL" multiline autoAdjustclassNamet  className ="TextField" value={this.state.message} onChange={ (e) => { this.setState({message: e.target.value})}}/>
+            <form className = "Modal_New_User">
+              <h2>Lägg till ny Aktivitet</h2>
+              <TextField label="Rubrik" value={this.state.title} onChange={ (e) => { this.setState({title: e.target.value})}}/>
+              <TextField label="Innehåll" multiline autoAdjustclassNamet  className ="TextField" value={this.state.message} onChange={ (e) => { this.setState({message: e.target.value})}}/>
    
               <Dropdown 
                 className ="Dropdown"
@@ -129,9 +129,9 @@ export class Action_Menu extends Component {
                 onDismiss={() => this.setState({showModul: !this.state.showModul}) }
                 isBlocking={false}
             >
-            <form class = "Modal_New_User">
+            <form className = "Modal_New_User">
               <h2>Lägg till ny användare</h2>
-              <TextField label="FörclassNameoch efternamn" className ="TextField" value={this.state.username} onChange={ (e) => { this.setState({username: e.target.value})}}/>
+              <TextField label="Förnamn & efternamn" className ="TextField" value={this.state.username} onChange={ (e) => { this.setState({username: e.target.value})}}/>
               <Dropdown 
                 className ="Dropdown"
                 label="Hur mår du idag?"

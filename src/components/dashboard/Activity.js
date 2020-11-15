@@ -79,8 +79,8 @@ export class Activity extends Component {
         })
         .then(Response => Response.json())
         .then( () => {
-            this.setState({ isShown: false })
-            this.props.loadData()
+            this.setState({ showModul: false })
+            this.fetchColumns()
         }).catch(error => {
             console.log("error status", error)
         })
@@ -114,51 +114,22 @@ export class Activity extends Component {
                                 onDismiss={() => this.setState({showModul: !this.state.showModul}) }
                                 isBlocking={false}
                             >
-                                <form classNameName="Modal_New_User">
-                                    <h2>Lägg till ny project</h2>
-                                    <TextField label="title" value={this.state.title} onChange={ (e) => { this.setState({ title: e.target.value }) }}/>
-                                    <TextField label="message" multiline autoAdjusclassNameht className ="TextField" value={this.state.message} onChange={ (e) => { this.setState({ message: e.target.value }) }}/>
-                                    <PrimaryButton text="Spara" onClick = { () => this.fetchEditActivity()} style={{marginTop: "10px"}} />
+                                <form className="Modal_New_User">
+                                    <h2> {this.state.title}</h2>
+                                    <TextField label="Rubrik" value={this.state.title} onChange={ (e) => { this.setState({ title: e.target.value }) }}/>
+                                    <TextField label="Innehåll" multiline autoAdjusclassNameht className ="TextField" value={this.state.message} onChange={ (e) => { this.setState({ message: e.target.value }) }}/>
+                                    <br />
+                                    <PrimaryButton text="Spara" onClick = { () => this.fetchEditActivity()} />
+                                    <PrimaryButton text="Ta bort" onClick = { () => this.deleteColumn(this.state.id)} style={{float :"right"}} />
                                 </form>
                             </Modal>
                             )
                     }
                 </Stack>
-                <Stack>
-                    <Stack horizontal  gap={8} className = "Dashboard_Titles">
-                        <DefaultButton   text={"Activities"} onClick={() => {this.redirectFunc()}} />
-                        <Persona size={PersonaSize.size40}/>
-
-                        {   
-                            this.state.columns.map( (column) => {
-                                return (
-                                    <div>
-                                        <Stack>
-                                            <Stack horizontal  gap={8} className = "Dashboard_Titles{">
-                                                <DefaultButton   text={column.title} onClick={() => {this.redirectFunc()}} />
-                                                <PersonaDropdown id={"dinpap"} loadData={this.props.loadData} columnId={column.id} supervisorId={column.supervisor}/>     
-                                           
-                                            </Stack>
-
-                                             <Text className= "Actevity_Text">{column.message} hej</Text>   
-                                        
-                                        </Stack>
-                                    
-                                    </div>
-                                )
-                            })
-                        }
-                    </Stack>
-               </Stack>
             </div>
         )
     }
 
     
 }
-
-/*
-
-                    <Text style = {{textAlign: "center", fontFamily: "Times"}}>Här kan ni se alla våra sneakers som vi har inne i butiken. Sneakers-modeller från Nike Air Max 90, Nike Air Force 1, Nike Air Max 270, Nike VaporMax, adidas Superstar, adidas Stan Smith, adidas Continental 80, FILA Disruptor, Converse All Star, Reebok Classic Leather</Text>
-*/
 

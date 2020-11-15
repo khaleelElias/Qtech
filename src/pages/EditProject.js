@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import { Navbar } from '../components/Navbar'
 import '../public/style.css'
 import  qtechgroup from '../public/qtechgroup.png'
-import { Stack, initializeIcons, Toggle, Modal, StackItem, DetailsList, SelectionMode } from 'office-ui-fabric-react';
+import { Stack, initializeIcons, Toggle, Modal, StackItem, DetailsList, SelectionMode, DatePicker } from 'office-ui-fabric-react';
 import { TextField} from 'office-ui-fabric-react/lib/TextField';
-import { PrimaryButton } from 'office-ui-fabric-react';
+import { PrimaryButton, IconButton } from 'office-ui-fabric-react';
 import { Text } from 'office-ui-fabric-react/lib/Text';
 import { StatusCircle } from '../components/statusCircle'
 import { switchStatus } from '../constants/index'
@@ -17,13 +17,13 @@ export class EditProject extends Component {
             name: 'Prioritet', 
             fieldName: 'priority', 
             minWidth: 50,
-            maxWidth: 100, 
+            maxWidth: 55, 
             isResizable: true,
             onRender: (item) => { return <Toggle defaultChecked={item.priority === 1 ? true : false} onChange={(e, checked) => { this.updatePriority(item.id, checked)} } /> }
         },
         { 
             key: 'projectNrColumn',
-            name: 'Projekt number', 
+            name: 'Projekt nr', 
             fieldName: 'projectNumber', 
             minWidth: 40, 
             width: 50,
@@ -35,7 +35,7 @@ export class EditProject extends Component {
             name: 'Företag', 
             fieldName: 'company', 
             minWidth: 100, 
-            maxWidth: 150, 
+            maxWidth: 100, 
             isResizable: true
         },
         {
@@ -58,20 +58,29 @@ export class EditProject extends Component {
         },
         {
             key: 'statusColumn',
-            name: 'status', 
+            name: 'Status', 
             fieldName: 'status', 
             minWidth: 40, 
             maxWidth: 60,
             onRender: (item) => { return <StatusCircle status={item.status} id={item.id} updateStatus={this.updateStatus.bind(this)} />}
         },
         {
+            key: 'updateProject',
+            name: 'Redigera',
+            fieldName: 'Redigera',
+            minWidth: 80,
+            maxWidth: 100,
+            onRender: (item) => {return <IconButton iconProps={{ iconName: 'Edit'}} title="Redigera" onClick={ () => { this.openEditProject(item) }} />}
+
+        },
+        {
             key: 'deleteProject',
-            name: 'Radera Projekt',
+            name: 'Radera',
             fieldName: 'Radera',
             minWidth: 80, 
             maxWidth: 100, 
             isResizable: true,
-            onRender: (item) => {return <PrimaryButton text="Radera" onClick = { () => { this.deleteProject(item.id) }}/>        }
+            onRender: (item) => {return <IconButton iconProps={{ iconName: 'Delete'}} title="Radera" onClick = { () => { this.deleteProject(item.id) }} />        }
         }
     ];
 
@@ -84,7 +93,7 @@ export class EditProject extends Component {
         },
         {
             key: 'deleteCheck',
-            name: 'delete',
+            name: 'Radera',
             fieldName: 'Radera',
             minWidth: 80,
             maxWidth: 100, 
@@ -128,7 +137,7 @@ export class EditProject extends Component {
                 </StackItem>
                 <div>
                     <PrimaryButton text="Skapa project" onClick = { () => { this.setState({ showModul: true }) }} style={{marginTop: "10px"}} />
-                    <PrimaryButton text="Skapa check" onClick = { () => { this.setState({ showCheckModul: true }) }} style={{marginTop: "10px"}} />
+                    <PrimaryButton text="Skapa check" onClick = { () => { this.setState({ showCheckModul: true }) }} style={{marginTop: "10px", float: "right"}} />
                     <Stack grow gap={1} horizontal>
                         <DetailsList
                             className="detaillist-left"
@@ -154,17 +163,21 @@ export class EditProject extends Component {
                             >
                                 <form className="Modal_New_User">
                                     <h2>Lägg till ny Projekt</h2>
-                                    <TextField label="Project nummer" className ="TextField" value={this.state.projectNumber} onChange={(e) => {this.setState({ projectNumber: e.target.value}) }}/>
-                                    <TextField label="Project company" className ="TextField" value={this.state.company} onChange={ (e) => { this.setState({company: e.target.value}) }}/>
-                                    <TextField label="Project message" className ="TextField" value={this.state.message} onChange={ (e) => { this.setState({ message: e.target.value}) }}/>
-                                    <TextField label="Project datum" className ="TextField" value={this.state.date} onChange={ (e) => { this.setState({date: e.target.value}) }}/>
+                                    <TextField label="Nummer" className ="TextField" value={this.state.projectNumber} onChange={(e) => {this.setState({ projectNumber: e.target.value}) }}/>
+                                    <TextField label="Kund" className ="TextField" value={this.state.company} onChange={ (e) => { this.setState({company: e.target.value}) }}/>
+                                    <TextField label="Anteckning" className ="TextField" value={this.state.message} onChange={ (e) => { this.setState({ message: e.target.value}) }}/>
+                                    <DatePicker 
+                                        label="Order datum"
+                                        className="TextField"
+                                        onSelectDate={ (date) => this.setProjectDate(date)}
+                                    />
                                     <div style={{padding: "10px"}}> Status
                                         <StatusCircle status={this.state.status} updateStatus={(id, status) => { this.setState({ status: switchStatus(status)})}} />
                                     </div>
                                     <div style={{padding: "10px"}}> Prioriterad
                                         <Toggle defaultChecked={this.state.priority} onChange={(e, checked) => { this.setState({ priority: checked }) } } />
                                     </div>
-                                    <PrimaryButton text="Skapa project" onClick = { () => this.createProject()} style={{marginTop: "10px"}} />
+                                    <PrimaryButton text="Project" onClick = { () => this.createProject()} style={{marginTop: "10px"}} />
                                 </form>
                             </Modal>
                             )
@@ -179,15 +192,35 @@ export class EditProject extends Component {
                                 <form className="Modal_New_User">
                                     <h2>Lägg till ny check</h2>
                                     <TextField label="Meddelande" multiline autoAdjustHeight className ="TextField" value={this.state.checkTitle} onChange={(e) => {this.setState({ checkTitle: e.target.value}) }}/>
-                                    <PrimaryButton text="Skapa check" onClick = { () => this.createCheck()} style={{marginTop: "10px"}} />
+                                    <PrimaryButton  className = "PrimaryButton" text="Skapa check" onClick = { () => this.createCheck()} style={{marginTop: "10px"}} />
                                 </form>
                             </Modal>
                             )
                         }
+                        {
+                            this.state.showEditModul && (
+                            <Modal className = "Modal"
+                                isOpen={this.state.showCheckModul}
+                                onDismiss={() => this.setState({showCheckModul: !this.state.showModul}) }
+                                isBlocking={false}
+                            >
+                            <form className="Modal_New_User">
+                                <h2>Lägg till ny check</h2>
+                                <TextField label="Meddelande" multiline autoAdjustHeight className ="TextField" value={this.state.checkTitle} onChange={(e) => {this.setState({ checkTitle: e.target.value}) }}/>
+                                <PrimaryButton  className = "PrimaryButton" text="Skapa check" onClick = { () => this.createCheck()} style={{marginTop: "10px"}} />
+                            </form>
+                            </Modal>
+                        )}
                 </div>
             </div>
         )
     }
+
+    setProjectDate = (pickedDate) => {
+        let newDate = `${pickedDate.getMonth() + 1}/${pickedDate.getDate()}/${pickedDate.getFullYear()}`
+        //console.log(newDate)
+        this.setState({date: newDate})
+    } 
 
     loadUsers = () => {
         fetch('/users')
@@ -275,6 +308,19 @@ export class EditProject extends Component {
             this.getProjects()
         }).catch(error =>   {
             console.log(error)
+        })
+    }
+
+    openEditProject = (project) => {
+       
+        this.setState({
+            showModul: true,
+            message: project.message,
+            company: project.company,
+            projectNumber: project.projectNumber,
+            date: project.date,
+            status: project.status,
+            checked: project.checked
         })
     }
 

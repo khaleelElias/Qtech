@@ -91,7 +91,7 @@ export class Project extends Component {
             <Stack>
                 
                  <Stack>
-                    <Stack Stack horizontal   className = "Dashboard_Titles">
+                    <Stack Stack horizontal gap = {8}    className = "Dashboard_Titles">
                         <FontIcon className={classNames.deepSkyBlue}  iconName="TextDocumentShared"/>
                         <DefaultButton  text="PROJEKT" onClick={() => {this.redirectFunc()}} />
                         <Persona size={PersonaSize.size40}/>
@@ -117,12 +117,6 @@ export class Project extends Component {
                                 return (
                                     <li style={{borderLeft:`5px solid ${statusOfField[project.status]}`}}> 
                                         <a className="listItem"> { `${title.slice(0, 40)} ${ title.length > 40 ?  "..." : "" }` }
-                                        <div className="descriptionOfListItem">
-                                            <p style={{textAlign:'center'}}>{project.projectNumber}</p>
-                                            <p>{project.company}</p>
-                                            <p>{project.date}</p>
-                                            <p>{project.message}</p>
-                                        </div>
                                         { project.priority ? (
                                             <FontIcon
                                                 iconName={"FavoriteStarFill"}
